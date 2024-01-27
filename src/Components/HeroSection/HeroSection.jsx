@@ -10,7 +10,7 @@ const el = React.useRef(null);
     const typed = new Typed(el.current, {
       strings: ['MERN Stack Developer',
       'JavaScript Ninja',
-      'UI/UX Enthusiast'],
+      'UI/UX Designer'],
       typeSpeed:70,
       backSpeed:20,
       loop: true
