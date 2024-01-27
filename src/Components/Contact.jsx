@@ -33,7 +33,7 @@ const Contact = () => {
             <input type="text" placeholder='Your Name' className='px-5 p-2' />
             <input type="email" placeholder='Your Email' className='px-5 p-2'  />
             <textarea name="" id="" cols="30" rows="5" placeholder='Your Message' className='px-5 p-2' ></textarea>
-             <button className='border rounded px-8 py-2 cursor-pointer w-52 mx-auto'>Submit</button>
+             <button className='border rounded px-7 py-2 cursor-pointer w-52 mx-auto'>Submit</button>
 
         </div>
     </div>
