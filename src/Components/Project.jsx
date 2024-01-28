@@ -2,11 +2,14 @@ import React from 'react'
 
 const Project = () => {
     const handleDivClick = (website) => {
-        // Replace 'https://example.com' with the desired URL
         const newTab = window.open(website, '_blank');
         newTab.focus();
       };
   return (
+    // this is the projects sections 
+    //Mukund Kapadia 301403876 24/01/2024 Project.jsx
+    // also some projects listed here when click can be accessed as they are hosted live
+    
     <section className='flex items-center mb-10' id='project'>    
     <div className='w-4/6 mx-auto flex flex-col justify-center items-center'>
         <h1 className='font-extrabold text-5xl'>My Projects</h1>

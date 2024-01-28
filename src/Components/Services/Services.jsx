@@ -9,6 +9,8 @@ const Services = () => {
   }, [])
   
   return (
+    // this is the services component that includes serices provided by my
+    //Mukund Kapadia 301403876 24/01/2024 Servies.jsx
     <section className='flex items-center justify-center relative services'>
     <div className='w-4/6 mx-auto flex flex-col items-center'>
       <img src="services4.gif" alt="" className=''/>

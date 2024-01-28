@@ -4,11 +4,14 @@ import { saveAs } from 'file-saver';
 import resume from '../Components/resume.pdf'
 
 const Contact = () => {
+    // using file-saver library for downloading pdf for the get cv button
     const handleDownload = () => {
         // Use FileSaver.js to save the existing PDF file
         saveAs(resume, 'resume.pdf');
       };
   return (
+    // this is the contact secction of the website that includes the contact form
+    // Mukund Kapadia 301403876 27/1/2024 Contact.jsx
     <section className='h-[85vh] flex items-center' id='contact'>
         <div className='w-4/6 mx-auto flex gap-10 p-5 justify-center mt-10'>
         <div className='space-y-5  p-10 w-[50%]'>

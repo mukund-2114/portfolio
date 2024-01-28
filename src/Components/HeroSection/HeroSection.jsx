@@ -15,6 +15,7 @@ const el = React.useRef(null);
       backSpeed:20,
       loop: true
     });
+    // using typed js library for typing animation in the hero section
 
     return () => {
       // Destroy Typed instance during cleanup to stop animation
@@ -28,6 +29,8 @@ const el = React.useRef(null);
   };
 
   return (
+    // this is the hero section of my website which using typed.js library 
+    //Mukund Kapadia 3014043876 27/1/2024 HeroSection.jsx
     <div className=' w-4/6 mx-auto flex justify-around items-center h-[88vh] bg -z-10'>
         <div className="content uppercase" >
                 <h3 className='relative text-white inline-block' style={{fontFamily:'Fira Code'}} >Hello -------------------------</h3>

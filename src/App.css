@@ -1,21 +1,25 @@
+/* Mukund Kapadia 301403876 27/01/2024 */
+
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cute+Font&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
 
-
+/* this section is just so that each section fits the whole screen */
 section{
   
   height: 100vh;
   scroll-behavior: smooth;
   overflow: hidden;
 }
+/* using scrolling effect for smooth scrolling */
 body{
   scroll-snap-type:y mandatory;
   background-color: #03001C;
   color: #F0EDCF;
 }
-
+/* 
+apply default styling for the website */
 *{
   margin: 0;
   padding: 0;
@@ -24,7 +28,7 @@ body{
   font-family: 'Rubik', 'Courier New';
   /* transition: all 0.5s; */
 }
-
+/* changing font size for header as tailwind css takes its default css */
 .content h1{
   font-size:4rem;
   font-weight: bolder;
@@ -52,7 +56,7 @@ body{
 
 } */
 
-
+/* used linear gradient for button hover effect */
  button{
       transition: all 0.2s;
       border-image-slice: 1;
@@ -63,7 +67,7 @@ body{
   transform: scale(1.1);
 }
 
-
+/* used psedo elements for giving a design back of the hero section picture */
 .photo::before{
   content: '';
   position: absolute;
@@ -91,7 +95,7 @@ body{
   z-index: -1;
 }
 
-
+/* active class used for the navlinks */
 .active{
   /* transition: all 1s ease-in; */
   /* animation: ; */
@@ -108,6 +112,8 @@ body{
 .about h3{
   color: #06FF00;
 }
+
+/* this css gives the glowing effect to the cards in the services section */
 .cards {
   position: relative;
   padding: 20px;
@@ -126,6 +132,8 @@ body{
     box-shadow: 0 0 10px #06FF00, 0 0 40px #06FF00;
   }
 }
+
+/* using animation delay for glowing card in the servies secton */
 .cards:nth-child(1){
   animation-delay: 0.4s;
 }
@@ -138,6 +146,8 @@ body{
 .cards:nth-child(4){
   animation-delay: 1s;
 }
+
+/* putting some background image in the serices secton */
 
 .services::before{
   content: '';
@@ -159,6 +169,8 @@ body{
   opacity: 0.5;
   width: 300px;
 }
+
+/* designing the cards for my projects section with glowing effect */
 .pcards{
   transition: all 0.5s;
   opacity: 0.7;

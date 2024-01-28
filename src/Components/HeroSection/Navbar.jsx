@@ -5,13 +5,13 @@ const Navbar = () => {
     const [activelink, setActiveLink] = useState('');
     const location =useLocation();
     const currentLocattion = location.pathname.split('/')[1];
-    
+    // using useEffect for checking the navlinks
     useEffect(() => {
         setActiveLink(currentLocattion)
     },[])
    
   return (
-
+    // Mukund Kapadia 301403876 27/01/2024 Navbar.jsx
     <>
         <div className="navbar flex w-4/6 mx-auto justify-between p-7 items-center uppercase" >
             <Link to='/' className="logo" style={{width:"200px",height:"50px"}} onClick={()=>setActiveLink('')}>

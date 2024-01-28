@@ -7,6 +7,8 @@ const About = () => {
     const aboutmelinks="bg-white text-black"
 
   return (
+    // this is the about section of the website
+    //Mukund Kapadia 301403876 24/01/2024 About.jsx
     <section className='flex items-center' id='about'>
     <div className='w-4/6 mx-auto flex justify-around gap-5'>
         <div className="photo2 mt-1">

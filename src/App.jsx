@@ -20,6 +20,11 @@ function App() {
 
   return (
     <div>
+      {/* using reacter router dom for routing
+        additionally using javascript library 'framer-motion' for animation
+        this is the main hero section of my website 
+        Mukund Kapadia 3014043876 27/1/2024
+      */}
       <Router>
         <Navbar />
           <Routes>
