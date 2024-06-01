@@ -1,17 +1,30 @@
-import React from 'react'
 import Navbar from './Navbar'
 import HeroSection from './HeroSection'
+import About from '../About/About'
+import Services from '../Services/Services'
+import Project from '../Project'
+import Contact from '../Contact'
+import AnimatedSection from './AnimationSection'
 
 const Hero = () => {
   return (
-    <section>
-        {/* this is the main hero section of my website 
-        Mukund Kapadia 3014043876 27/1/2024 Hero.jsx
-        */}
+    <div>
 
-        <HeroSection/>
-    </section>
-  )
-}
+      <HeroSection/>
+      <AnimatedSection>
+        <About />
+      </AnimatedSection>
+      <AnimatedSection>
+        <Project />
+      </AnimatedSection>
+      <AnimatedSection>
+        <Services />
+      </AnimatedSection>
+      <AnimatedSection>
+        <Contact />
+      </AnimatedSection>
+    </div>
+  );
+};
 
-export default Hero
+export default Hero;

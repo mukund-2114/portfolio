@@ -25,10 +25,10 @@ const Contact = () => {
                 <span>437-249-2900</span>
             </div>
             <ul className='flex gap-3'>
-                            <li><Icon icon="skill-icons:instagram" width={20}/></li>
-                            <li><Icon icon="devicon:linkedin" width={20}/></li>
-                            <li><Icon icon="devicon:github" width={20} className='bg-white rounded-sm'/></li>
-            </ul>
+            <li><a href="https://www.instagram.com/mukund.kapadia1987/" target='_blank'><Icon icon="skill-icons:instagram" width={30}/></a></li>
+                        <li><a href="https://www.linkedin.com/in/mukund1987/" target='_blank'><Icon icon="devicon:linkedin" width={30}/></a></li>
+                        <li><a href="https://github.com/mukund-2114" target='_blank'><Icon icon="devicon:github" width={30} className='bg-white rounded-sm'/></a></li>
+        </ul>
             <button className='border rounded px-8 py-2 cursor-pointer'onClick={handleDownload}>Download CV</button>
         </div>
 

@@ -9,6 +9,7 @@ import Contact from './Components/Contact';
 import Navbar from './Components/HeroSection/Navbar';
 import Footer from './Components/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Social from './Components/Social';
 
 function App() {
   const ref = useRef();
@@ -27,6 +28,7 @@ function App() {
       */}
       <Router>
         <Navbar />
+        <Social/>
           <Routes>
             <Route
               path="/"

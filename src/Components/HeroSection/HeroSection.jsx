@@ -8,7 +8,7 @@ const HeroSection = () => {
 const el = React.useRef(null);
   React.useEffect(() => {
     const typed = new Typed(el.current, {
-      strings: ['MERN Stack Developer',
+      strings: ['Full Stack Developer',
       'JavaScript Ninja',
       'UI/UX Designer'],
       typeSpeed:70,
@@ -41,8 +41,8 @@ const el = React.useRef(null);
                     <button className='border rounded px-8 py-2 cursor-pointer'onClick={handleDownload}>Get CV</button>
                 </div>
         </div>
-        <div className="photo relative">
-                <img src="mukund_photo.png" className='scale-150 hero-img ' alt="" />
+        <div className="relative photo">
+                <img src="mukund_photo1.png" className='scale-150 ' alt="" />
         </div>
     </div>
   )

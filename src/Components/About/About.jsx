@@ -1,18 +1,22 @@
-import React, { useState } from 'react'
+
 import AboutMe from './AboutMe'
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useState } from 'react';
+
 
 const About = () => {
 
     const [about, setAbout] = useState('skills');
     const aboutmelinks="bg-white text-black"
-
+    
+   
   return (
-    // this is the about section of the website
-    //Mukund Kapadia 301403876 24/01/2024 About.jsx
+ 
     <section className='flex items-center' id='about'>
-    <div className='w-4/6 mx-auto flex justify-around gap-5'>
-        <div className="photo2 mt-1">
-            <img src="mukund_photo.png" alt="" />
+    <div className='w-4/6 mx-auto flex justify-around gap-5 items-center'>
+        <div className="photo2 -translate-y-10">
+            <img src="mukund_photo2.png" alt="" className='scale-125' />
         </div>
         <div className="aboutme w-4/6 space-y-6">
             <h1 className='font-extrabold text-5xl'>About Me</h1>
@@ -21,8 +25,11 @@ const About = () => {
                 <li className={`inline-block cursor-pointer px-4 py-2 ${about==="skills" && aboutmelinks}`}onClick={()=>setAbout('skills')}>Skills</li>
                 <li className={`inline-block cursor-pointer px-4 py-2 ${about==="experience" && aboutmelinks}`}onClick={()=>setAbout('experience')}>Experience</li>
                 <li className={`inline-block cursor-pointer px-4 py-2 ${about==="education" && aboutmelinks}`} onClick={()=>setAbout('education')}>Education</li>
+                <li className={`inline-block cursor-pointer px-4 py-2 ${about==="certification" && aboutmelinks}`} onClick={()=>setAbout('certification')}>Certification</li>
             </ul>
-            <AboutMe about={about}/>
+            <div style={{ height: '300px', overflowY: 'auto' }}> {/* Adjust height as per your requirement */}
+                <AboutMe about={about}/>
+            </div>
         </div>
     </div>
     </section>

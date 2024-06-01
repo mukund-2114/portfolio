@@ -182,3 +182,15 @@ apply default styling for the website */
   box-shadow: 0 0 10px #06FF00, 0 0 40px #06FF00;
   cursor: pointer ;
 }
+
+
+
+.animated-section {
+  opacity: 0;
+  transition: opacity 1s ease; /* Adjust the duration and timing function as needed */
+  transition-delay: 0.1s; /* Adjust the delay duration as needed */
+}
+
+.animated-section.animate {
+  opacity: 1;
+}

@@ -24,11 +24,7 @@ const Navbar = () => {
                     <Link to='/services' className={`${activelink=='services'? 'active':''}`} onClick={()=>setActiveLink('services')}>Services</Link>
                     <Link to='/projects' className={`${activelink=='projects'? 'active':''}`} onClick={()=>setActiveLink('projects')}>Projects</Link>
                     <Link to='/contact' className={`${activelink=='contact'? 'active':''}`} onClick={()=>setActiveLink('contact')}>Contact</Link>
-                    {/* <ul className='flex gap-3'>
-                        <li><Icon icon="skill-icons:instagram" width={20}/></li>
-                        <li><Icon icon="devicon:linkedin" width={20}/></li>
-                        <li><Icon icon="devicon:github" width={20} className='bg-white rounded-sm'/></li>
-                    </ul> */}
+                    
                 </ul>
             </div>
         </div>
