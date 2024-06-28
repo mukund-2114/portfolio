@@ -32,7 +32,7 @@ const el = React.useRef(null);
    
     <div className='lg:w-4/6 mx-auto flex justify-around items-center min-h-screen z-10 p-3 lg:p-0'>
         <div className="content uppercase" >
-                <h3 className='relative text-white inline-block' style={{fontFamily:'Fira Code'}} >Hello --------------------------------</h3>
+                <h3 className='relative text-white inline-block' style={{fontFamily:'Fira Code'}} >Hello ----------------------------------</h3>
                 <h1 className='lg:text-[4rem] text-[2rem]'>I am Mukund Kapadia</h1>
                 <span ref={el} className='font-bold' style={{fontSize:"2.5rem",fontFamily:'Cute Font'}}/>
                 <div className="button mt-5 flex gap-5">
