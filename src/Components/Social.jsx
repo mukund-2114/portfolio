@@ -3,7 +3,7 @@ import React from 'react'
 
 const Social = () => {
   return (
-    <div className='fixed  left-0 top-[40%] p-3'>
+    <div className='fixed hidden lg:block left-0 top-[40%] lg:p-3 ml-1 z-[999]'>
         <ul className='flex flex-col gap-5 '>
                         <li><a href="https://www.instagram.com/mukund.kapadia1987/" target='_blank'><Icon icon="skill-icons:instagram" width={30}/></a></li>
                         <li><a href="https://www.linkedin.com/in/mukund1987/" target='_blank'><Icon icon="devicon:linkedin" width={30}/></a></li>

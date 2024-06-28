@@ -7,11 +7,11 @@ const AboutMe = ({ about }) => {
   
 
   return (
-    <div className='about mr-5'>
+    <div className='about'>
       {about === "skills" && (
-        <div className='mt-10'>
+        <div className='lg:mt-10'>
           <h3>Frontend Development</h3>
-          <ul className='list-disc px-4'>
+          <ul className='list-disc px-4 '>
             {data.skills.frontendDevelopment.map(skill => (
               <li key={skill}>{skill}</li>
             ))}
@@ -25,10 +25,10 @@ const AboutMe = ({ about }) => {
         </div>
       )}
       {about === "experience" && (
-        <div className='mt-10'>
+        <div className='lg:mt-10'>
           {data.experience.map(exp => (
             <div key={exp.title}>
-              <div className='flex justify-between'>
+              <div className='flex justify-between '>
                 <h3>{exp.title}</h3>
                 <h3>{exp.date}</h3>
               </div>
@@ -38,9 +38,9 @@ const AboutMe = ({ about }) => {
         </div>
       )}
       {about === "education" && (
-        <div className='mt-10'>
+        <div className='lg:mt-10'>
           {data.education.map(edu => (
-            <div key={edu.title} className='mt-5'>
+            <div key={edu.title} className=''>
               <div className='flex justify-between'>
                 <h3>{edu.title}</h3>
                 <h3>{edu.date}</h3>
@@ -53,9 +53,9 @@ const AboutMe = ({ about }) => {
       
 
         {about === "certification" && (
-            <div className='mt-10'>
+            <div className='lg:mt-10'>
             {data.certification.map(cert => (
-                <div key={cert.title} className='mt-5'>
+                <div key={cert.title} className='lg:mr-5 mt-5'>
                 <div className='flex items-center justify-between'>
                     <div className='flex items-center'>
                     <Icon icon={cert.icon} className={`${cert.icon=="simple-icons:canvas"?"text-red-600":"text-blue-500"}`} style={{ fontSize: '24px', marginRight: '8px'}} />

@@ -8,40 +8,40 @@ const Contact = () => {
     const handleDownload = () => {
         // Use FileSaver.js to save the existing PDF file
         saveAs(resume, 'resume.pdf');
-      };
-  return (
-    // this is the contact secction of the website that includes the contact form
-    // Mukund Kapadia 301403876 27/1/2024 Contact.jsx
-    <section className='h-[85vh] flex items-center' id='contact'>
-        <div className='w-4/6 mx-auto flex gap-10 p-5 justify-center mt-10'>
-        <div className='space-y-5  p-10 w-[50%]'>
-            <h1 className='font-extrabold text-5xl mb-7'>Contact Me</h1>
-            <div className='flex gap-4'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="m5.812 11l2.178 2.168a1.1 1.1 0 0 0 1.05.3a1.119 1.119 0 0 0 .809-.74l3.576-10.72A1.118 1.118 0 0 0 11.987.57L1.267 4.147a1.119 1.119 0 0 0-.74.859a1.099 1.099 0 0 0 .3 1l2.737 2.737l-.09 3.466zM13.106.79L3.564 8.742"/></svg>
-                <span>mukund@gmail.com</span>
-            </div>
-            <div className='flex gap-4'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48"><g fill="none"><g clipPath="url(#healthiconsPhoneNegative0)"><path fill="currentColor" fillRule="evenodd" d="M48 0H0v48h48zM26.42 34.76c-5.66-2.9-10.3-7.52-13.18-13.18l4.4-4.4c.56-.56.72-1.34.5-2.04A22.72 22.72 0 0 1 17 8c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2c0 18.78 15.22 34 34 34c1.1 0 2-.9 2-2v-6.98c0-1.1-.9-2-2-2c-2.48 0-4.9-.4-7.14-1.14c-.7-.24-1.5-.06-2.04.48z" clipRule="evenodd"/></g><defs><clipPath id="healthiconsPhoneNegative0"><path d="M0 0h48v48H0z"/></clipPath></defs></g></svg>
-                <span>437-249-2900</span>
-            </div>
-            <ul className='flex gap-3'>
-            <li><a href="https://www.instagram.com/mukund.kapadia1987/" target='_blank'><Icon icon="skill-icons:instagram" width={30}/></a></li>
-                        <li><a href="https://www.linkedin.com/in/mukund1987/" target='_blank'><Icon icon="devicon:linkedin" width={30}/></a></li>
-                        <li><a href="https://github.com/mukund-2114" target='_blank'><Icon icon="devicon:github" width={30} className='bg-white rounded-sm'/></a></li>
-        </ul>
-            <button className='border rounded px-8 py-2 cursor-pointer'onClick={handleDownload}>Download CV</button>
-        </div>
+    };
+    return (
+        // this is the contact secction of the website that includes the contact form
+        // Mukund Kapadia 301403876 27/1/2024 Contact.jsx
+        <section className='lg:h-[85vh] lg:flex items-center h-auto mb-5' id='contact'>
+            <div className='lg:w-4/6 mx-auto lg:flex lg:gap-10 gap-14 p-3 justify-center mt-10'>
+                <div className='space-y-5 lg:p-10 lg:w-[50%] w-full'>
+                    <h1 className='lg:font-extrabold font-bold lg:text-5xl text-3xl text-center lg:text-left mb-5'>Contact Me</h1>
+                    <div className='flex gap-4'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="m5.812 11l2.178 2.168a1.1 1.1 0 0 0 1.05.3a1.119 1.119 0 0 0 .809-.74l3.576-10.72A1.118 1.118 0 0 0 11.987.57L1.267 4.147a1.119 1.119 0 0 0-.74.859a1.099 1.099 0 0 0 .3 1l2.737 2.737l-.09 3.466zM13.106.79L3.564 8.742" /></svg>
+                        <span>mdrkkapadia@gmail.com</span>
+                    </div>
+                    <div className='flex gap-4'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 48 48"><g fill="none"><g clipPath="url(#healthiconsPhoneNegative0)"><path fill="currentColor" fillRule="evenodd" d="M48 0H0v48h48zM26.42 34.76c-5.66-2.9-10.3-7.52-13.18-13.18l4.4-4.4c.56-.56.72-1.34.5-2.04A22.72 22.72 0 0 1 17 8c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2c0 18.78 15.22 34 34 34c1.1 0 2-.9 2-2v-6.98c0-1.1-.9-2-2-2c-2.48 0-4.9-.4-7.14-1.14c-.7-.24-1.5-.06-2.04.48z" clipRule="evenodd" /></g><defs><clipPath id="healthiconsPhoneNegative0"><path d="M0 0h48v48H0z" /></clipPath></defs></g></svg>
+                        <span>437-249-2900</span>
+                    </div>
+                    <ul className='flex gap-3'>
+                        <li><a href="https://www.instagram.com/mukund.kapadia1987/" target='_blank'><Icon icon="skill-icons:instagram" width={30} /></a></li>
+                        <li><a href="https://www.linkedin.com/in/mukund1987/" target='_blank'><Icon icon="devicon:linkedin" width={30} /></a></li>
+                        <li><a href="https://github.com/mukund-2114" target='_blank'><Icon icon="devicon:github" width={30} className='bg-white rounded-sm' /></a></li>
+                    </ul>
+                    <button className='border rounded px-8 py-2 cursor-pointer' onClick={handleDownload}>Download CV</button>
+                </div>
 
-        <div className='flex flex-col gap-5 p-10 w-full'>
-            <input type="text" placeholder='Your Name' className='px-5 p-2' />
-            <input type="email" placeholder='Your Email' className='px-5 p-2'  />
-            <textarea name="" id="" cols="30" rows="5" placeholder='Your Message' className='px-5 p-2' ></textarea>
-             <button className='border rounded px-7 py-2 cursor-pointer w-52 mx-auto'>Submit</button>
+                <div className='flex flex-col gap-5 lg:p-10 w-full lg:mt-0 mt-5'>
+                    <input type="text" placeholder='Your Name' className='text-black px-5 p-2' />
+                    <input type="email" placeholder='Your Email' className='text-black px-5 p-2' />
+                    <textarea name="" id="" cols="30" rows="5" placeholder='Your Message' className='text-black px-5 p-2' ></textarea>
+                    <button className='border rounded px-7 py-2 cursor-pointer w-52 mx-auto'>Submit</button>
 
-        </div>
-    </div>
-    </section>
-  )
+                </div>
+            </div>
+        </section>
+    )
 }
 
 export default Contact

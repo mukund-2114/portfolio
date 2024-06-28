@@ -12,16 +12,16 @@ const Hero = () => {
 
       <HeroSection/>
       <AnimatedSection>
-        <About />
+        <About/>
       </AnimatedSection>
       <AnimatedSection>
-        <Project />
+        <Project/>
       </AnimatedSection>
       <AnimatedSection>
-        <Services />
+        <Services/>
       </AnimatedSection>
       <AnimatedSection>
-        <Contact />
+        <Contact/>
       </AnimatedSection>
     </div>
   );

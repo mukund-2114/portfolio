@@ -29,20 +29,19 @@ const el = React.useRef(null);
   };
 
   return (
-    // this is the hero section of my website which using typed.js library 
-    //Mukund Kapadia 3014043876 27/1/2024 HeroSection.jsx
-    <div className=' w-4/6 mx-auto flex justify-around items-center h-[88vh] bg -z-10'>
+   
+    <div className='lg:w-4/6 mx-auto flex justify-around items-center min-h-screen z-10 p-3 lg:p-0'>
         <div className="content uppercase" >
-                <h3 className='relative text-white inline-block' style={{fontFamily:'Fira Code'}} >Hello -------------------------</h3>
-                <h1 >I am Mukund Kapadia</h1>
+                <h3 className='relative text-white inline-block' style={{fontFamily:'Fira Code'}} >Hello --------------------------------</h3>
+                <h1 className='lg:text-[4rem] text-[2rem]'>I am Mukund Kapadia</h1>
                 <span ref={el} className='font-bold' style={{fontSize:"2.5rem",fontFamily:'Cute Font'}}/>
                 <div className="button mt-5 flex gap-5">
                     <button className='border rounded px-8 py-2 cursor-pointer'>Hire Me</button>
                     <button className='border rounded px-8 py-2 cursor-pointer'onClick={handleDownload}>Get CV</button>
                 </div>
         </div>
-        <div className="relative photo">
-                <img src="mukund_photo1.png" className='scale-150 ' alt="" />
+        <div className="lg:relative photo hidden lg:block">
+                <img src="mukund_photo1.png" className='scale-125 ' alt="" />
         </div>
     </div>
   )

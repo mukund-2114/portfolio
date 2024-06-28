@@ -11,12 +11,14 @@ section{
   height: 100vh;
   scroll-behavior: smooth;
   overflow: hidden;
+  margin-top: 70px;
 }
 /* using scrolling effect for smooth scrolling */
 body{
   scroll-snap-type:y mandatory;
   background-color: #03001C;
   color: #F0EDCF;
+  
 }
 /* 
 apply default styling for the website */
@@ -27,10 +29,10 @@ apply default styling for the website */
   font-size: 1rem;
   font-family: 'Rubik', 'Courier New';
   /* transition: all 0.5s; */
+  /* border: 1px solid red !important; */
 }
 /* changing font size for header as tailwind css takes its default css */
 .content h1{
-  font-size:4rem;
   font-weight: bolder;
 }
 .content h3{
