@@ -14,9 +14,9 @@ const Hero = () => {
       <AnimatedSection>
         <About/>
       </AnimatedSection>
-      <AnimatedSection>
+      {/* <AnimatedSection> */}
         <Project/>
-      </AnimatedSection>
+      {/* </AnimatedSection> */}
       <AnimatedSection>
         <Services/>
       </AnimatedSection>

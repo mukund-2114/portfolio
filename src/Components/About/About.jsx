@@ -13,7 +13,7 @@ const About = () => {
    
   return (
  
-    <section className='lg:flex items-center lg:p-0 p-3 mb-10211222' id='about'>
+    <section className='lg:flex items-center lg:h-screen h-full lg:p-0 p-3 mb-10 lg:mt-14 mt-0' id='about'>
     <div className='lg:w-4/6 mx-auto lg:flex justify-around gap-5 items-center'>
         <div className="photo2 lg:-translate-y-10 -translate-y-0">
             <img src="mukund_photo2.png" alt="" className='lg:scale-125 hidden lg:block' />
@@ -28,7 +28,7 @@ const About = () => {
                 <li className={`inline-block cursor-pointer px-4 py-2 ${about==="education" && aboutmelinks}`} onClick={()=>setAbout('education')}>Education</li>
                 <li className={`inline-block cursor-pointer px-4 py-2 ${about==="certification" && aboutmelinks}`} onClick={()=>setAbout('certification')}>Certification</li>
             </ul>
-            <div style={{height:"300px",overflowY: 'auto' }}> {/* Adjust height as per your requirement */}
+            <div className='h-[350px]' style={{overflowY: 'auto' }}> {/* Adjust height as per your requirement */}
                 <AboutMe about={about}/>
             </div>
         </div>

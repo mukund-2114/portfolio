@@ -56,13 +56,13 @@ const AboutMe = ({ about }) => {
             <div className='lg:mt-10'>
             {data.certification.map(cert => (
                 <div key={cert.title} className='lg:mr-5 mt-5'>
-                <div className='flex items-center justify-between'>
+                <div className='lg:flex lg:items-center lg:justify-between'>
                     <div className='flex items-center'>
-                    <Icon icon={cert.icon} className={`${cert.icon=="simple-icons:canvas"?"text-red-600":"text-blue-500"}`} style={{ fontSize: '24px', marginRight: '8px'}} />
-                    <h3>{cert.title}</h3>
+                        <Icon icon={cert.icon} className={`${cert.icon=="simple-icons:canvas"?"text-red-600":"text-blue-500"}`} style={{ fontSize: '24px', marginRight: '8px'}} />
+                        <h3>{cert.title}</h3>
                     </div>
-                    <div>
-                    <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer" className='border border-white p-1 text-black bg-white'>View Credential</a>
+                    <div className=' lg:mt-0 mt-2 '>
+                      <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer" className='border border-white p-1 text-black bg-white'>View Credential</a>
                     </div>
                 </div>
                 <div className='flex justify-between mt-2'>
@@ -70,7 +70,7 @@ const AboutMe = ({ about }) => {
                     <p>{cert.dateIssued}</p>
                 </div>
                 <div className='mt-2'>
-                    <p><strong>Skills:</strong> {cert.skills.join(', ')}</p>
+                    <p><strong>Skills :</strong> <span className='font-light'>{cert.skills.join(', ')}</span></p>
                 </div>
                 </div>
             ))}
