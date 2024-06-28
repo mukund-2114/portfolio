@@ -5,11 +5,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    rewrite: ({ path }) => {
-      if (!path.startsWith('/static/')) {
-        return '/index.html';
-      }
-      return null;
-    },
+    fallback: 'index.html',
   },
 })
