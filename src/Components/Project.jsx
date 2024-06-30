@@ -13,7 +13,7 @@ const Project = () => {
         <h1 className='lg:font-extrabold font-bold lg:text-5xl text-3xl text-center lg:text-left'>My Projects</h1>
         <div className='lg:grid lg:grid-cols-3 grid grid-cols-1 lg:gap-5 gap-8 mt-10'>
           {projectsData.projects.map(project => (
-            <div className="pcards border border-white relative" key={project.title} onDoubleClick={() => handleDivClick(project.website)}>
+            <div className="pcards border border-white relative" key={project.title} onClick={() => handleDivClick(project.website)}>
               <div className='lg:w-[400px] lg:h-[230px] w-full h-52'>
                 <img src={project.image} alt={project.title} className='w-[100%] h-[100%]' />
               </div>
