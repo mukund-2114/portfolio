@@ -20,9 +20,14 @@
     ],
     "education": [
       {
-        "title": "Software Engineering Technician - Centennial College",
-        "date": "Jan 2024 - Present",
+        "title": "Mobile Application Development - Centennial College",
+        "date": "Sept 2024 - Present",
         "description": "As a React Trainer, proficient in developing user-friendly web applications with optimal performance, I demonstrated strong analytical and problem-solving skills by gathering business requirements, creating detailed analysis documents, overcoming technical challenges for effective problem resolution and performance optimization."
+      },
+      {
+        "title": "Software Engineering Technician - Centennial College",
+        "date": "Jan 2024 - Aug 2024",
+        "description": "Completed an accelerated one-year program focused on software engineering methodologies, programming languages, and the latest industry practices. Gained hands-on experience in web development, software testing, and software design through real-world projects."
       },
       {
         "title": "B.Tech Computer Engineering - Marwadi University",
