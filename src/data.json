@@ -1,151 +1,193 @@
 {
-    "skills": {
-      "frontendDevelopment": [
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS"
-      ],
-      "backendDevelopment": [
-        "Node.js",
-        "Express.js",
-        "MongoDB"
+  "skills": {
+    "frontend": [
+      "JavaScript ES6+",
+      "TypeScript",
+      "React.js",
+      "Next.js",
+      "React Native",
+      "HTML5",
+      "CSS3",
+      "Redux",
+      "Context API",
+      "Tailwind CSS",
+      "Material-UI",
+      "Bootstrap"
+    ],
+    "backendAndCloud": [
+      "Node.js",
+      "Express.js",
+      "RESTful APIs",
+      "GraphQL",
+      "Firebase",
+      "MongoDB",
+      "PostgreSQL",
+      "AWS (S3, EC2)",
+      "Prisma ORM"
+    ],
+    "aiAndTools": [
+      "Prompt engineering",
+      "OpenAI-style APIs",
+      "AWS Inference",
+      "Git",
+      "GitHub",
+      "Docker",
+      "CI/CD",
+      "GitHub Actions",
+      "Jest",
+      "React Testing Library",
+      "Webpack",
+      "npm",
+      "Postman"
+    ],
+    "practices": [
+      "Agile",
+      "Scrum",
+      "Mobile-first design",
+      "Responsive web design",
+      "Performance optimization",
+      "Component-based architecture"
+    ]
+  },
+  "experience": [
+    {
+      "title": "Full Stack Developer - Community of Guardians",
+      "date": "Mar 2025 – Present",
+      "description": "Improved reliability of a social platform by delivering full‑stack features in React.js, Node.js, TypeScript, and Prisma. Reduced deployment friction by introducing GitHub Actions workflows, cutting manual steps by 30%. Worked with AWS (S3, EC2) to standardize hosting and monitoring. Integrated Orbit AI chatbot to guide users and reduce support queries."
+    },
+    {
+      "title": "React Developer - BrainyBeam Infotech Pvt. Ltd",
+      "date": "Oct 2022 – Jan 2024",
+      "description": "Brought 5+ client products onto shared React UI patterns, reducing one‑off styling fixes. Implemented mobile‑first responsive designs with CSS Grid and Flexbox. Introduced a reusable component library that sped up new page development. Supported junior developers through code reviews and guidance on JavaScript and React."
+    }
+  ],
+  "education": [
+    {
+      "title": "Mobile Application Development - Centennial College",
+      "date": "Sep 2024 – Aug 2025",
+      "description": "GPA: 4.4/4.5"
+    },
+    {
+      "title": "Software Engineering Technician - Centennial College",
+      "date": "Jan 2024 – Aug 2024",
+      "description": "GPA: 4.27/4.5"
+    }
+  ],
+  "certification": [
+    {
+      "title": "Postman API Fundamentals Student Expert",
+      "organization": "Canvas Credentials (Badgr)",
+      "dateIssued": "May 2024",
+      "credentialUrl": "https://api.badgr.io/public/assertions/9tadBLbURZ6DsmdHFXbegA",
+      "icon": "simple-icons:canvas",
+      "skills": [
+        "Rest APIs"
       ]
     },
-    "experience": [
-      {
-        "title": "React Developer - BrainyBeams Infotech Pvt. Ltd.",
-        "date": "Jan 2023-Oct 2023",
-        "description": "As a React Trainer, proficient in developing user-friendly web applications with optimal performance, I demonstrated strong analytical and problem-solving skills by gathering business requirements, creating detailed analysis documents, overcoming technical challenges for effective problem resolution and performance optimization."
-      }
-    ],
-    "education": [
-      {
-        "title": "Mobile Application Development - Centennial College",
-        "date": "Sept 2024 - Present",
-        "description": "As a React Trainer, proficient in developing user-friendly web applications with optimal performance, I demonstrated strong analytical and problem-solving skills by gathering business requirements, creating detailed analysis documents, overcoming technical challenges for effective problem resolution and performance optimization."
-      },
-      {
-        "title": "Software Engineering Technician - Centennial College",
-        "date": "Jan 2024 - Aug 2024",
-        "description": "Completed an accelerated one-year program focused on software engineering methodologies, programming languages, and the latest industry practices. Gained hands-on experience in web development, software testing, and software design through real-world projects."
-      },
-      {
-        "title": "B.Tech Computer Engineering - Marwadi University",
-        "date": "Aug 2019 - May 2023",
-        "description": "As a React Trainer, proficient in developing user-friendly web applications with optimal performance, I demonstrated strong analytical and problem-solving skills by gathering business requirements, creating detailed analysis documents, overcoming technical challenges for effective problem resolution and performance optimization."
-      }
-    ],
-    "certification": [
-      {
-        "title": "Postman API Fundamentals Student Expert",
-        "organization": "Canvas Credentials (Badgr)",
-        "dateIssued": "May 2024",
-        "credentialUrl": "https://api.badgr.io/public/assertions/9tadBLbURZ6DsmdHFXbegA",
-        "icon": "simple-icons:canvas",
-        "skills": [
-          "Rest APIs"
-            ]
-      },
-      {
-        "title": "Project-Based Learning: Build an AI Text Summarizer app",
-        "organization": "Postman",
-        "dateIssued": "May 2024",
-        "credentialUrl": "http://verify.skilljar.com/c/neddhdxquf6b",
-        "icon": "logos:postman-icon",
-        "skills": [
-          "Rest APIs",
-          "Artificial Intelligence (AI)",
-          "Node.js",
-          "Express.js"
-            ]
-      },
-      {
-        "title": "Career Essentials in Software Development by Microsoft and LinkedIn",
-        "organization": "Microsoft",
-        "dateIssued": "Feb 2024",
-        "credentialUrl": "https://www.linkedin.com/learning/certificates/d8ad43f76ffb00df268d90578dc4cea962ba735496ac7d529d949e9eb79ee514",
-        "icon": "logos:microsoft-icon",
-        "skills": [
-          "Software Development",
-          "Career Essentials",
-          "Microsoft Technologies"
-            ]
-      },
-      {
-        "title": "Google IT Support Specialization",
-        "organization": "Google",
-        "dateIssued": "May 2023",
-        "credentialUrl": "https://www.coursera.org/account/accomplishments/specialization/certificate/4U8MTCQXLXLT",
-        "icon": "simple-icons:coursera",
-        "skills": [
-          "Technical Support",
-          "Operating Systems",
-          "Troubleshooting","Analytical Skills"
-            ]
-      }
-    ],
-    
-    "projects":[
-      {
-        "title": "Apple Landing Page Clone",
-        "description": "From cutting-edge devices to seamless software integration, AppleClone captures the spirit of innovation, simplicity, and elegance that defines the Apple ecosystem.",
-        "image": "apple.png",
-        "website": "https://apple-z44z.onrender.com/"
-      },
-      {
-        "title": "Luxereserve",
-        "description": "Luxereserve which is a Airbnb Clone offers a streamlined platform for users to effortlessly discover, book, and host unique accommodations, simplifying the travel experience for both guests and hosts.",
-        "image": "aribnb.jpg",
-        "website": "https://luxereserve-hotel.onrender.com/" 
-      },
-      {
-        "title": "Multishop",
-        "description": "Explore our curated collection of exquisite furniture crafted to transform your living spaces. From modern elegance to timeless classics and style that truly complements your lifestyle.",
-        "image": "multipshop.png",
-        "website": "https://tiny-begonia-6358f5.netlify.app/"
-      },
-      {
-        "title": "Full Stack Ecommerce Website",
-        "description": "Offering a user-friendly interface, secure transactions, and efficient order management, SastiDukan provides customers with a convenient and satisfying shopping experience.",
-        "image": "eccomerce.png",
-        "website": "https://remarkable-sopapillas-50641b.netlify.app/"
-      },
-      {
-        "title": "Vegefoods",
-        "description": "With convenient online ordering and doorstep delivery, Vegefoods brings the goodness of the farm straight to your kitchen, ensuring a healthy and flavorful dining experience",
-        "image": "vegefoods.png",
-        "website": "https://wondrous-dragon-9fee94.netlify.app/"
-      },
-      {
-        "title": "Exploriana Travels",
-        "description": "With an intuitive interface, real-time schedules, and secure transactions, travelers can easily plan and book their bus journeys, enhancing the convenience of bus travel arrangements.",
-        "image": "bus.jpg",
-        "website": "" 
-      }
-    ],
-    "services":[
-      {
-        "icon": "ph:code-fill",
-        "title": "Web Design",
-        "description": "Designing visually striking and intuitive user interfaces for an engaging and memorable user experience."
-      },
-      {
-        "icon": "mdi:responsive",
-        "title": "Responsive Web Design",
-        "description": "Creating visually appealing and responsive designs that adapt seamlessly to various screen sizes and devices."
-      },
-      {
-        "icon": "fluent:card-ui-24-regular",
-        "title": "UI/UX Design",
-        "description": "Crafting visually appealing and intuitive user interfaces to enhance user experience."
-      },
-      {
-        "icon": "octicon:rocket-16",
-        "title": "SEO",
-        "description": "Implementing SEO best practices to improve website visibility and rankings on search engines."
-      }
-    ]
-    
-    
-    
-  }
+    {
+      "title": "Project-Based Learning: Build an AI Text Summarizer app",
+      "organization": "Postman",
+      "dateIssued": "May 2024",
+      "credentialUrl": "http://verify.skilljar.com/c/neddhdxquf6b",
+      "icon": "logos:postman-icon",
+      "skills": [
+        "Rest APIs",
+        "Artificial Intelligence (AI)",
+        "Node.js",
+        "Express.js"
+      ]
+    },
+    {
+      "title": "Career Essentials in Software Development",
+      "organization": "Microsoft",
+      "dateIssued": "Feb 2024",
+      "credentialUrl": "https://www.linkedin.com/learning/certificates/d8ad43f76ffb00df268d90578dc4cea962ba735496ac7d529d949e9eb79ee514",
+      "icon": "logos:microsoft-icon",
+      "skills": [
+        "Software Development",
+        "Career Essentials",
+        "Microsoft Technologies"
+      ]
+    },
+    {
+      "title": "Google IT Support Specialization",
+      "organization": "Google",
+      "dateIssued": "May 2023",
+      "credentialUrl": "https://www.coursera.org/account/accomplishments/specialization/certificate/4U8MTCQXLXLT",
+      "icon": "simple-icons:coursera",
+      "skills": [
+        "Technical Support",
+        "Operating Systems",
+        "Troubleshooting",
+        "Analytical Skills"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Orrery Explorer: NASA Space Apps Challenge",
+      "description": "A 3D interactive orrery web application visualizing Near-Earth Objects (NEOs) and planetary orbits. Built for the NASA Space Apps Challenge to explore our solar system.",
+      "image": "orrery.png",
+      "website": "https://orrery-explorer.vercel.app/"
+    },
+    {
+      "title": "EasyApi: AI-Powered API Generator",
+      "description": "A Next.js web application that lets users configure and generate REST APIs through an intuitive UI backed by an AI model deployed on AWS. Features AI-generated endpoint definitions and schema suggestions.",
+      "image": "easyapi.png",
+      "website": "https://easyapi.mukundkapadia.com/"
+    },
+    {
+      "title": "PawfectMatch: Pet Adoption App",
+      "description": "Cross-platform mobile app connecting adopters with shelters. Features real-time messaging with Twilio and Firebase, browsing, favourites, and application flows.",
+      "image": "pawfectmatch.jpg",
+      "website": "https://www.acadiate.com/ee/SETAS/IT_Projects_-_Part_2_2025?view=std&showcase=288666765"
+    },
+    {
+      "title": "Luxereserve: Vacation Rental Marketplace",
+      "description": "Full-stack vacation rental platform with property listings, filters, Mapbox-based maps, and secure booking flow. Deployed on AWS with Node.js, MongoDB, and Stripe.",
+      "image": "luxereserve.png",
+      "website": "https://luxereserve.mukundkapadia.com/"
+    },
+    {
+      "title": "Apple Landing Page Clone",
+      "description": "From cutting-edge devices to seamless software integration, AppleClone captures the spirit of innovation, simplicity, and elegance that defines the Apple ecosystem.",
+      "image": "apple.png",
+      "website": "https://apple-z44z.onrender.com/"
+    },
+    {
+      "title": "Multishop",
+      "description": "Explore our curated collection of exquisite furniture crafted to transform your living spaces. From modern elegance to timeless classics and style that truly complements your lifestyle.",
+      "image": "multipshop.png",
+      "website": "https://tiny-begonia-6358f5.netlify.app/"
+    },
+
+    {
+      "title": "Exploriana Travels",
+      "description": "With an intuitive interface, real-time schedules, and secure transactions, travelers can easily plan and book their bus journeys, enhancing the convenience of bus travel arrangements.",
+      "image": "bus.jpg",
+      "website": ""
+    }
+  ],
+  "services": [
+    {
+      "icon": "ph:code-fill",
+      "title": "Full Stack Development",
+      "description": "Building robust web applications using React.js, Next.js, Node.js, and modern databases."
+    },
+    {
+      "icon": "mdi:responsive",
+      "title": "Responsive Design",
+      "description": "Creating visually appealing designs that adapt seamlessly to various screen sizes and devices."
+    },
+    {
+      "icon": "fluent:card-ui-24-regular",
+      "title": "UI/UX Design",
+      "description": "Crafting intuitive user interfaces and premium experiences with modern aesthetics."
+    },
+    {
+      "icon": "carbon:machine-learning-model",
+      "title": "AI Integration",
+      "description": "Integrating AI services and models to create intelligent and dynamic web solutions."
+    }
+  ]
+}

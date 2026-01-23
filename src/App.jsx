@@ -1,6 +1,8 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import './App.css';
+import Background from './Components/Background';
+import FloatingIcons from './Components/FloatingIcons';
 import About from './Components/About/About';
 import Hero from './Components/HeroSection/Hero';
 import Services from './Components/Services/Services';
@@ -27,80 +29,82 @@ function App() {
         Mukund Kapadia 3014043876 27/1/2024
       */}
       <Router>
+        <Background />
+        <FloatingIcons />
         <Navbar />
-        <Social/>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <motion.div
-                  key="home"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={pageTransition}
-                >
-                  <Hero />
-                </motion.div>
-              }
-            />
-            <Route
-              path="/about"
-              element={
-                <motion.div
-                  key="about"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={pageTransition}
-                >
-                  <About />
-                </motion.div>
-              }
-            />
-            <Route
-              path="/services"
-              element={
-                <motion.div
-                  key="services"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={pageTransition}
-                >
-                  <Services />
-                </motion.div>
-              }
-            />
-            <Route
-              path="/projects"
-              element={
-                <motion.div
-                  key="projects"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={pageTransition}
-                >
-                  <Project />
-                </motion.div>
-              }
-            />
-            <Route
-              path="/contact"
-              element={
-                <motion.div
-                  key="contact"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={pageTransition}
-                >
-                  <Contact />
-                </motion.div>
-              }
-            />
-          </Routes>
+        <Social />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <motion.div
+                key="home"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={pageTransition}
+              >
+                <Hero />
+              </motion.div>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <motion.div
+                key="about"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={pageTransition}
+              >
+                <About />
+              </motion.div>
+            }
+          />
+          <Route
+            path="/services"
+            element={
+              <motion.div
+                key="services"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={pageTransition}
+              >
+                <Services />
+              </motion.div>
+            }
+          />
+          <Route
+            path="/projects"
+            element={
+              <motion.div
+                key="projects"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={pageTransition}
+              >
+                <Project />
+              </motion.div>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <motion.div
+                key="contact"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={pageTransition}
+              >
+                <Contact />
+              </motion.div>
+            }
+          />
+        </Routes>
         <Footer />
       </Router>
     </div>

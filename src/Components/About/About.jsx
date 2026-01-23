@@ -44,7 +44,7 @@ const About = () => {
                     </div>
                 </div>
             </div>
-            <p className='lg:p-0 p-1'>Hello there! I'm Mukund Kapadia, a passionate React developer with a keen eye for crafting dynamic and user-friendly web applications. I specialize in creating responsive and performant web applications using the power of React.js. From crafting pixel-perfect user interfaces to implementing robust and scalable frontend architectures, I thrive on turning ideas into elegant, functional, and user-friendly experiences.</p>
+            <p className='lg:p-0 p-1'>Full-stack developer with 2+ years of hands-on experience building web applications using React.js, Next.js, TypeScript, and Node.js. Strong at turning product requirements into clean, responsive UIs and well-structured APIs, and comfortable owning features from implementation through testing, deployment to AWS, and ongoing iteration in Agile teams.</p>
             <ul className='lg:flex gap-10'>
                 <li className={`inline-block cursor-pointer px-4 py-2 ${about==="skills" && aboutmelinks}`}onClick={()=>setAbout('skills')}>Skills</li>
                 <li className={`inline-block cursor-pointer px-4 py-2 ${about==="experience" && aboutmelinks}`}onClick={()=>setAbout('experience')}>Experience</li>
