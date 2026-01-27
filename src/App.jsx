@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import './App.css';
 import Background from './Components/Background';
@@ -15,6 +15,7 @@ import Social from './Components/Social';
 
 function App() {
   const ref = useRef();
+  const [debugMode, setDebugMode] = useState(false);
 
   const pageTransition = {
     duration: 1, // Animation duration in seconds
@@ -22,16 +23,34 @@ function App() {
   };
 
   return (
-    <div>
+    <div className={debugMode ? 'debug-wireframes' : ''}>
+      {/* 
+        "Astonish" Factor: Wireframe Mode
+        If debugMode is true, we apply a global class that outlines everything.
+      */}
+      {debugMode && (
+        <style>{`
+          .debug-wireframes * {
+            outline: 1px solid rgba(0, 255, 0, 0.3) !important;
+            background: rgba(0, 20, 0, 0.1) !important;
+            box-shadow: none !important;
+          }
+          .debug-wireframes text, .debug-wireframes p, .debug-wireframes h1, .debug-wireframes h2, .debug-wireframes h3 {
+             color: #0f0 !important;
+             font-family: 'Courier New', monospace !important;
+          }
+        `}</style>
+      )}
+
       {/* using reacter router dom for routing
         additionally using javascript library 'framer-motion' for animation
         this is the main hero section of my website 
         Mukund Kapadia 3014043876 27/1/2024
       */}
       <Router>
-        <Background />
-        <FloatingIcons />
-        <Navbar />
+        <Background debugMode={debugMode} />
+        {!debugMode && <FloatingIcons />}
+        <Navbar debugMode={debugMode} setDebugMode={setDebugMode} />
         <Social />
         <Routes>
           <Route

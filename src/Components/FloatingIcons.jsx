@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useMemo, memo } from 'react';
+import React, { useEffect, useState, useMemo, memo, useCallback } from 'react';
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { Icon } from '@iconify/react';
+import confetti from 'canvas-confetti';
 
 const icons = [
     { icon: "logos:react", name: "React" },
@@ -75,12 +76,12 @@ const IconItem = memo(({ item, mouseX, mouseY, config, onPop }) => {
                         y: mouseY,
                         left: `${config.initialXPercent}%`,
                         top: `${config.initialYPercent}%`,
-                        zIndex: 100, // Very high z-index
+                        zIndex: 40, // Reduced z-index to stay behind primary text but above background
                         animationDuration: `${config.duration}s`
                     }}
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{
-                        opacity: 0.5, // Balanced opacity
+                        opacity: 0.15, // Much more transparent base
                         scale: 1,
                     }}
                     exit={{
@@ -96,27 +97,28 @@ const IconItem = memo(({ item, mouseX, mouseY, config, onPop }) => {
                     }}
                     whileHover={{
                         scale: 1.3,
-                        opacity: 1,
+                        opacity: 0.8, // Pop on hover
                         filter: "brightness(1.5) drop-shadow(0 0 15px rgba(56,189,248,0.8))",
                         transition: { duration: 0.2 }
                     }}
+                    whileTap={{ scale: 0.9 }}
                     onClick={handleClick}
                 >
-                    <Icon
-                        icon={item.icon}
-                        width={config.size}
-                        height={config.size}
-                        className="transition-all duration-300 pointer-events-none"
-                    />
+                    <div className="relative group">
+                        <Icon
+                            icon={item.icon}
+                            className="w-8 h-8 md:w-12 md:h-12 transition-all duration-300 pointer-events-none opacity-60 group-hover:opacity-100"
+                        />
+                    </div>
                 </motion.div>
             )}
         </AnimatePresence>
     );
 });
 
-const ScoreBoard = ({ score, lastCollected }) => {
+const ScoreBoard = ({ score, lastCollected, isFinished }) => {
     return (
-        <div className="fixed bottom-6 right-6 z-[200] flex flex-col items-end gap-2 pointer-events-none select-none">
+        <div className={`fixed bottom-6 right-6 z-[200] flex flex-col items-end gap-2 pointer-events-none select-none transition-opacity duration-500 ${isFinished ? 'opacity-0' : 'opacity-100'}`}>
             <AnimatePresence>
                 {lastCollected && (
                     <motion.div
@@ -146,12 +148,59 @@ const ScoreBoard = ({ score, lastCollected }) => {
     );
 };
 
+const CongratsModal = ({ onReset }) => {
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="fixed inset-0 z-[300] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+        >
+            <motion.div
+                initial={{ scale: 0.8, y: 50, opacity: 0 }}
+                animate={{ scale: 1, y: 0, opacity: 1 }}
+                transition={{ type: "spring", damping: 15 }}
+                className="bg-slate-900/90 border border-primary/30 p-8 rounded-3xl shadow-[0_0_50px_rgba(56,189,248,0.3)] max-w-md w-full text-center relative overflow-hidden"
+            >
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent" />
+
+                <motion.div
+                    animate={{
+                        rotate: [0, -10, 10, -10, 10, 0],
+                        scale: [1, 1.2, 1.2, 1.2, 1.2, 1]
+                    }}
+                    transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+                    className="flex justify-center mb-6"
+                >
+                    <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20">
+                        <Icon icon="noto:trophy" className="w-16 h-16" />
+                    </div>
+                </motion.div>
+
+                <h2 className="text-3xl font-bold text-white mb-2">Master Collector!</h2>
+                <p className="text-slate-400 mb-8">
+                    You've successfully collected all the technologies in my stack. You're ready to explore the portfolio!
+                </p>
+
+                <button
+                    onClick={onReset}
+                    className="group relative px-8 py-3 bg-primary text-white font-bold rounded-xl overflow-hidden transition-all hover:scale-105 active:scale-95"
+                >
+                    <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
+                    Play Again
+                </button>
+            </motion.div>
+        </motion.div>
+    );
+};
+
 const FloatingIcons = () => {
     const [mounted, setMounted] = useState(false);
     const [score, setScore] = useState(0);
     const [lastCollected, setLastCollected] = useState(null);
+    const [showCongrats, setShowCongrats] = useState(false);
+    const [gameKey, setGameKey] = useState(0);
 
-    const iconConfigs = useMemo(() => generateRandomPositions(icons.length), []);
+    const iconConfigs = useMemo(() => generateRandomPositions(icons.length), [gameKey]);
 
     const x = useMotionValue(0);
     const y = useMotionValue(0);
@@ -161,7 +210,6 @@ const FloatingIcons = () => {
     useEffect(() => {
         setMounted(true);
         const handleMouseMove = (e) => {
-            // Parallax intensity control - keep it subtle
             const factor = 40;
             x.set((e.clientX - window.innerWidth / 2) / factor);
             y.set((e.clientY - window.innerHeight / 2) / factor);
@@ -170,21 +218,58 @@ const FloatingIcons = () => {
         return () => window.removeEventListener('mousemove', handleMouseMove);
     }, [x, y]);
 
-    const handlePop = (name) => {
+    useEffect(() => {
+        if (score === icons.length && score !== 0) {
+            setShowCongrats(true);
+
+            // Fire confetti
+            const duration = 3 * 1000;
+            const end = Date.now() + duration;
+
+            const frame = () => {
+                confetti({
+                    particleCount: 2,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#38bdf8', '#818cf8', '#c084fc']
+                });
+                confetti({
+                    particleCount: 2,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#38bdf8', '#818cf8', '#c084fc']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            };
+            frame();
+        }
+    }, [score]);
+
+    const handlePop = useCallback((name) => {
         setScore(prev => prev + 1);
         setLastCollected({ name, id: Date.now() });
         setTimeout(() => setLastCollected(null), 2000);
+    }, []);
+
+    const resetGame = () => {
+        setScore(0);
+        setShowCongrats(false);
+        setGameKey(prev => prev + 1);
     };
 
     if (!mounted) return null;
 
     return (
         <>
-            {/* Clickable layer - z-index high to ensure clicks but pointer-events-none on parent */}
-            <div className="fixed inset-0 overflow-hidden pointer-events-none z-[100]">
-                {icons.slice(0, icons.length).map((item, index) => (
+            <div key={gameKey} className="fixed inset-0 overflow-hidden pointer-events-none z-[100]">
+                {icons.map((item, index) => (
                     <IconItem
-                        key={index}
+                        key={`${gameKey}-${index}`}
                         item={item}
                         mouseX={mouseX}
                         mouseY={mouseY}
@@ -193,7 +278,12 @@ const FloatingIcons = () => {
                     />
                 ))}
             </div>
-            <ScoreBoard score={score} lastCollected={lastCollected} />
+
+            <ScoreBoard score={score} lastCollected={lastCollected} isFinished={showCongrats} />
+
+            <AnimatePresence>
+                {showCongrats && <CongratsModal onReset={resetGame} />}
+            </AnimatePresence>
         </>
     );
 };

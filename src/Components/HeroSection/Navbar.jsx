@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 
-const Navbar = () => {
+const Navbar = ({ debugMode, setDebugMode }) => {
     const [activeLink, setActiveLink] = useState('');
     const [open, setOpen] = useState(false);
     const location = useLocation();
@@ -28,6 +28,23 @@ const Navbar = () => {
                         <li><Link to='/services' className={`${activeLink === 'services' ? 'text-white active' : 'text-gray-400 font-medium hover:text-white transition-colors'}`} onClick={() => setOpen(false)}>Services</Link></li>
                         <li><Link to='/projects' className={`${activeLink === 'projects' ? 'text-white active' : 'text-gray-400 font-medium hover:text-white transition-colors'}`} onClick={() => setOpen(false)}>Projects</Link></li>
                         <li><Link to='/contact' className={`${activeLink === 'contact' ? 'text-white active' : 'text-gray-400 font-medium hover:text-white transition-colors'}`} onClick={() => setOpen(false)}>Contact</Link></li>
+
+                        {/* Debug Toggle */}
+                        <li>
+                            <button
+                                onClick={() => {
+                                    setDebugMode(!debugMode);
+                                    setOpen(false);
+                                }}
+                                className={`flex items-center gap-2 px-3 py-1 rounded-full border transition-all duration-300 ${debugMode
+                                        ? 'bg-green-900/20 border-green-500 text-green-400 shadow-[0_0_10px_rgba(34,197,94,0.3)]'
+                                        : 'border-white/10 text-gray-400 hover:border-white/30 hover:text-white'
+                                    }`}
+                            >
+                                <Icon icon="lucide:terminal" className="text-sm" />
+                                <span className="text-xs font-mono">{debugMode ? 'BSOD_ACTIVE' : 'CMD'}</span>
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </nav>

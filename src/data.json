@@ -1,52 +1,33 @@
 {
   "skills": {
     "frontend": [
-      "JavaScript ES6+",
-      "TypeScript",
       "React.js",
       "Next.js",
-      "React Native",
-      "HTML5",
-      "CSS3",
-      "Redux",
-      "Context API",
+      "TypeScript",
       "Tailwind CSS",
-      "Material-UI",
-      "Bootstrap"
+      "Redux",
+      "React Native"
     ],
     "backendAndCloud": [
       "Node.js",
       "Express.js",
-      "RESTful APIs",
-      "GraphQL",
-      "Firebase",
-      "MongoDB",
       "PostgreSQL",
-      "AWS (S3, EC2)",
-      "Prisma ORM"
+      "MongoDB",
+      "AWS Cloud",
+      "GraphQL"
     ],
     "aiAndTools": [
-      "Prompt engineering",
-      "OpenAI-style APIs",
+      "AI Prompt Engineering",
       "AWS Inference",
-      "Git",
-      "GitHub",
       "Docker",
-      "CI/CD",
-      "GitHub Actions",
-      "Jest",
-      "React Testing Library",
-      "Webpack",
-      "npm",
-      "Postman"
+      "CI/CD Pipelines",
+      "Jest/Testing"
     ],
     "practices": [
-      "Agile",
-      "Scrum",
-      "Mobile-first design",
-      "Responsive web design",
-      "Performance optimization",
-      "Component-based architecture"
+      "Agile Scrum",
+      "Responsive Design",
+      "System Architecture",
+      "Performance Optimization"
     ]
   },
   "experience": [
@@ -160,7 +141,6 @@
       "image": "multipshop.png",
       "website": "https://tiny-begonia-6358f5.netlify.app/"
     },
-
     {
       "title": "Exploriana Travels",
       "description": "With an intuitive interface, real-time schedules, and secure transactions, travelers can easily plan and book their bus journeys, enhancing the convenience of bus travel arrangements.",

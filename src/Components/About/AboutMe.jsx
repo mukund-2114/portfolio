@@ -9,38 +9,73 @@ const AboutMe = ({ about }) => {
   return (
     <div className='about'>
       {about === "skills" && (
-        <div className='lg:mt-10 grid lg:grid-cols-2 gap-4'>
-          <div>
-            <h3 className='font-bold text-lg mb-2'>Frontend</h3>
-            <ul className='list-disc px-4'>
+        <div className='lg:mt-10 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10'>
+          {/* Frontend Section */}
+          <div className="group">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/20 shadow-lg shadow-primary/5">
+                <Icon icon="lucide:monitor" className="text-primary w-6 h-6" />
+              </div>
+              <h3 className='font-bold text-xl text-white/90 tracking-tight'>Modern Frontend</h3>
+            </div>
+            <div className="flex flex-wrap gap-2.5">
               {data.skills.frontend.map(skill => (
-                <li key={skill}>{skill}</li>
+                <span key={skill} className="px-4 py-2 rounded-xl bg-white/[0.03] border border-white/10 text-white/50 text-sm hover:border-primary/50 hover:text-primary hover:bg-primary/5 transition-all duration-300 cursor-default">
+                  {skill}
+                </span>
               ))}
-            </ul>
+            </div>
           </div>
-          <div>
-            <h3 className='font-bold text-lg mb-2'>Backend & Cloud</h3>
-            <ul className='list-disc px-4'>
+
+          {/* Backend Section */}
+          <div className="group">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="p-2.5 rounded-xl bg-secondary/10 border border-secondary/20 shadow-lg shadow-secondary/5">
+                <Icon icon="lucide:server" className="text-secondary w-6 h-6" />
+              </div>
+              <h3 className='font-bold text-xl text-white/90 tracking-tight'>Backend & Infrastructure</h3>
+            </div>
+            <div className="flex flex-wrap gap-2.5">
               {data.skills.backendAndCloud.map(skill => (
-                <li key={skill}>{skill}</li>
+                <span key={skill} className="px-4 py-2 rounded-xl bg-white/[0.03] border border-white/10 text-white/50 text-sm hover:border-secondary/50 hover:text-secondary hover:bg-secondary/5 transition-all duration-300 cursor-default">
+                  {skill}
+                </span>
               ))}
-            </ul>
+            </div>
           </div>
-          <div>
-            <h3 className='font-bold text-lg mb-2'>AI & Tools</h3>
-            <ul className='list-disc px-4'>
+
+          {/* AI & Tools Section */}
+          <div className="group">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="p-2.5 rounded-xl bg-accent/10 border border-accent/20 shadow-lg shadow-accent/5">
+                <Icon icon="lucide:sparkles" className="text-accent w-6 h-6" />
+              </div>
+              <h3 className='font-bold text-xl text-white/90 tracking-tight'>AI & DevOps</h3>
+            </div>
+            <div className="flex flex-wrap gap-2.5">
               {data.skills.aiAndTools.map(skill => (
-                <li key={skill}>{skill}</li>
+                <span key={skill} className="px-4 py-2 rounded-xl bg-white/[0.03] border border-white/10 text-white/50 text-sm hover:border-accent/50 hover:text-accent hover:bg-accent/5 transition-all duration-300 cursor-default">
+                  {skill}
+                </span>
               ))}
-            </ul>
+            </div>
           </div>
-          <div>
-            <h3 className='font-bold text-lg mb-2'>Practices</h3>
-            <ul className='list-disc px-4'>
+
+          {/* Practices Section */}
+          <div className="group">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
+                <Icon icon="lucide:settings" className="text-white/70 w-6 h-6" />
+              </div>
+              <h3 className='font-bold text-xl text-white/90 tracking-tight'>Engineering Culture</h3>
+            </div>
+            <div className="flex flex-wrap gap-2.5">
               {data.skills.practices.map(skill => (
-                <li key={skill}>{skill}</li>
+                <span key={skill} className="px-4 py-2 rounded-xl bg-white/[0.03] border border-white/10 text-white/50 text-sm hover:border-white/40 hover:text-white hover:bg-white/5 transition-all duration-300 cursor-default">
+                  {skill}
+                </span>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       )}

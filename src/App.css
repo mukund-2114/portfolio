@@ -455,6 +455,20 @@ button:hover {
   }
 }
 
+@keyframes border-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-border-rotate {
+  animation: border-rotate 4s linear infinite;
+}
+
 .floating-icon {
   animation: float 6s ease-in-out infinite;
 }
