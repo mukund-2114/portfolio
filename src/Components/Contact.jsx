@@ -37,8 +37,8 @@ const Contact = () => {
     };
 
     return (
-        <section className='min-h-[85vh] flex items-center justify-center py-20 px-4' id='contact'>
-            <div className='max-w-6xl w-full grid lg:grid-cols-2 gap-12 items-center bg-card p-8 lg:p-12 rounded-3xl border border-white/10 backdrop-blur-md'>
+        <section className='min-h-[85vh] flex items-center justify-center py-20 px-0 md:px-4' id='contact'>
+            <div className='max-w-6xl w-full grid lg:grid-cols-2 gap-12 items-center bg-card p-6 md:p-12 md:rounded-3xl border-y md:border border-white/10 backdrop-blur-md'>
 
                 <div className='space-y-8'>
                     <div>

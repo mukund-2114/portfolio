@@ -46,21 +46,27 @@ const HeroSection = () => {
                     <div className="absolute -top-6 -right-6 w-72 h-72 border-2 border-white/10 rounded-xl transform rotate-12 transition-transform duration-500 group-hover:rotate-6"></div>
                     <div className="absolute -bottom-6 -left-6 w-72 h-72 border-2 border-white/10 rounded-xl transform -rotate-12 transition-transform duration-500 group-hover:rotate-6"></div>
 
-                    {/* Main image container */}
-                    <div className="relative">
-                        {/* Gradient overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent rounded-xl z-20 pointer-events-none"></div>
+                    {/* Main image container with Fireworks Tail Border */}
+                    <div className="relative p-[4px] rounded-xl bg-gray-900 shadow-2xl overflow-hidden">
+                        {/* The Spinning Fireworks Tail Gradient - Dark Theme & Slower */}
+                        {/* Transparent -> Deep Indigo (Dark) -> Primary (Sky) -> White Head */}
+                         <div className="absolute inset-[-150%] animate-[spin_7s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,#0000_0%,#0000_75%,#312e81_80%,#38bdf8_92%,#ffffff_100%)] opacity-100" />
+                        
+                        {/* Intense Glow Layer - Matching Theme */}
+                        <div className="absolute inset-[-150%] animate-[spin_7s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,#0000_0%,#0000_75%,#312e81_80%,#38bdf8_92%,#ffffff_100%)] blur-xl opacity-70" />
 
-                        {/* Gradient Border Wrapper */}
-                        <div className="p-1 rounded-xl bg-gradient-to-tr from-cyan-400 via-purple-500 to-pink-500 shadow-xl shadow-cyan-500/20">
-                            {/* Image wrapper */}
-                            <div className="relative z-0 bg-black rounded-lg overflow-hidden">
-                                <img
-                                    src="Mukund_new.png"
-                                    className='relative w-full h-auto lg:w-[400px] transition-all duration-500 group-hover:scale-[1.02] filter brightness-90 grayscale-[20%] hover:grayscale-0'
-                                    alt="Profile"
-                                />
-                            </div>
+                        {/* Image Wrapper */}
+                        <div className="relative bg-black rounded-[9px] overflow-hidden">
+                             {/* Gradient overlay for initial dark mood */}
+                            <div className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent z-20 pointer-events-none"></div>
+                            
+                            <img
+                                src="Mukund_new.png"
+                                className='relative z-10 w-full h-auto lg:w-[400px] transition-all duration-500 group-hover:scale-[1.02] filter brightness-90 grayscale-[20%] hover:grayscale-0'
+                                alt="Profile"
+                            />
+                             {/* Optional dark vignette just inside border */}
+                            <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] z-20 rounded-[10px]"></div>
                         </div>
                     </div>
 

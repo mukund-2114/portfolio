@@ -31,33 +31,36 @@ const About = () => {
                 </div>
                 <div className="aboutme lg:w-4/6 space-y-3">
                     <h1 className='lg:font-extrabold font-bold lg:text-5xl text-3xl text-center lg:text-left'>About Me</h1>
-                    <div className="relative group w-fit mx-auto lg:hidden">
-                        {/* Background geometric elements */}
-                        <div className="absolute -top-4 -right-4 w-40 h-40 border-2 border-white/10 rounded-xl transform rotate-12 transition-transform duration-500 group-hover:rotate-6"></div>
-                        <div className="absolute -bottom-4 -left-4 w-40 h-40 border-2 border-white/10 rounded-xl transform -rotate-12 transition-transform duration-500 group-hover:rotate-6"></div>
+                    <div className="relative group w-fit mx-auto lg:hidden my-8">
+                        {/* Background geometric elements - Darker and subtle */}
+                        <div className="absolute -top-4 -right-4 w-40 h-40 border border-white/5 rounded-xl transform rotate-12 transition-transform duration-500 group-hover:rotate-6"></div>
+                        <div className="absolute -bottom-4 -left-4 w-40 h-40 border border-white/5 rounded-xl transform -rotate-12 transition-transform duration-500 group-hover:rotate-6"></div>
 
-                        {/* Main image container */}
-                        <div className="relative">
-                            {/* Gradient overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent rounded-xl z-20 pointer-events-none"></div>
+                        {/* Shooting Star / Fireworks Tail Border Container */}
+                        <div className="relative p-[4px] rounded-xl bg-gray-900 shadow-2xl overflow-hidden">
+                            {/* The Spinning Fireworks Tail Gradient - Dark Theme & Slower */}
+                            {/* Transparent -> Deep Indigo (Dark) -> Primary (Sky) -> White Head */}
+                            <div className="absolute inset-[-150%] animate-[spin_7s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,#0000_0%,#0000_75%,#312e81_80%,#38bdf8_92%,#ffffff_100%)] opacity-100" />
+                            
+                            {/* Intense Glow Layer - Matching Theme */}
+                            <div className="absolute inset-[-150%] animate-[spin_7s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,#0000_0%,#0000_75%,#312e81_80%,#38bdf8_92%,#ffffff_100%)] blur-xl opacity-70" />
 
-                            {/* Gradient Border Wrapper */}
-                            <div className="p-1 rounded-xl bg-gradient-to-tr from-cyan-400 via-purple-500 to-pink-500 shadow-xl shadow-cyan-500/20">
-                                {/* Image wrapper */}
-                                <div className="relative z-0 bg-black rounded-lg overflow-hidden">
-                                    <img
-                                        src="Mukund_new.png"
-                                        width={250}
-                                        height={200}
-                                        className='relative rounded-lg transition-all duration-500 group-hover:scale-[1.02]'
-                                        alt="Profile"
-                                    />
-                                </div>
+                            {/* Image Wrapper */}
+                            <div className="relative bg-black rounded-[9px] overflow-hidden">
+                                <img
+                                    src="Mukund_new.png"
+                                    width={250}
+                                    height={200}
+                                    className='relative z-10 block transition-all duration-500 group-hover:scale-[1.02]'
+                                    alt="Profile"
+                                />
+                                {/* Optional dark vignette just inside border */}
+                                <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] z-20 rounded-[10px]"></div>
                             </div>
                         </div>
 
                         {/* Decorative dots */}
-                        <div className="absolute -right-2 top-1/3 space-y-2">
+                        <div className="absolute -right-2 top-1/3 space-y-2 opacity-30">
                             <div className="w-1.5 h-1.5 rounded-full bg-gray-400"></div>
                             <div className="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
                             <div className="w-1.5 h-1.5 rounded-full bg-gray-200"></div>
