@@ -1,16 +1,17 @@
 import React from 'react';
-import { useInView } from 'react-intersection-observer';
+import { motion } from 'framer-motion';
 
-const AnimatedSection = ({ children }) => {
-  const [ref, inView] = useInView({
-    threshold: 0.5, // Adjust this value as needed, 0.5 means 50% of the section is visible
-    triggerOnce: true, // Ensures animation only happens once
-  });
-
+const AnimatedSection = ({ children, className = '' }) => {
   return (
-    <div ref={ref} className={`animated-section ${inView ? 'animate' : ''}`}>
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0 }} // Trigger immediately when element enters viewport
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className={`animated-section ${className}`}
+    >
       {children}
-    </div>
+    </motion.div>
   );
 };
 

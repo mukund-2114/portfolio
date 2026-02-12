@@ -1,29 +1,46 @@
-import { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import Lenis from 'lenis';
 import './App.css';
 import Background from './Components/Background';
 import FloatingIcons from './Components/FloatingIcons';
 import About from './Components/About/About';
-import Hero from './Components/HeroSection/Hero';
+import Hero from './Components/HeroSection/HeroSection';
 import Services from './Components/Services/Services';
 import Project from './Components/Project';
 import Contact from './Components/Contact';
 import Navbar from './Components/HeroSection/Navbar';
 import Footer from './Components/Footer';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Social from './Components/Social';
+import AnimatedSection from './Components/HeroSection/AnimationSection';
 
 function App() {
-  const ref = useRef();
   const [debugMode, setDebugMode] = useState(false);
+  const [lenis, setLenis] = useState(null);
 
-  const pageTransition = {
-    duration: 1, // Animation duration in seconds
-    ease: 'easeInOut', // Easing function
-  };
+  useEffect(() => {
+    const lenisInstance = new Lenis({
+      duration: 1.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      smoothTouch: false, // Touch scrolling is usually better native
+    });
+
+    setLenis(lenisInstance);
+
+    function raf(time) {
+      lenisInstance.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenisInstance.destroy();
+    };
+  }, []);
 
   return (
-    <div className={debugMode ? 'debug-wireframes' : ''}>
+    <div className={`relative ${debugMode ? 'debug-wireframes' : ''} pb-0 md:pb-0`}>
       {/* 
         "Astonish" Factor: Wireframe Mode
         If debugMode is true, we apply a global class that outlines everything.
@@ -42,90 +59,40 @@ function App() {
         `}</style>
       )}
 
-      {/* using reacter router dom for routing
-        additionally using javascript library 'framer-motion' for animation
-        this is the main hero section of my website 
-        Mukund Kapadia 3014043876 27/1/2024
-      */}
-      <Router>
-        <Background debugMode={debugMode} />
-        {!debugMode && <FloatingIcons />}
-        <Navbar debugMode={debugMode} setDebugMode={setDebugMode} />
-        <Social />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <motion.div
-                key="home"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={pageTransition}
-              >
-                <Hero />
-              </motion.div>
-            }
-          />
-          <Route
-            path="/about"
-            element={
-              <motion.div
-                key="about"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={pageTransition}
-              >
-                <About />
-              </motion.div>
-            }
-          />
-          <Route
-            path="/services"
-            element={
-              <motion.div
-                key="services"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={pageTransition}
-              >
-                <Services />
-              </motion.div>
-            }
-          />
-          <Route
-            path="/projects"
-            element={
-              <motion.div
-                key="projects"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={pageTransition}
-              >
-                <Project />
-              </motion.div>
-            }
-          />
-          <Route
-            path="/contact"
-            element={
-              <motion.div
-                key="contact"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={pageTransition}
-              >
-                <Contact />
-              </motion.div>
-            }
-          />
-        </Routes>
-        <Footer />
-      </Router>
+      <Background debugMode={debugMode} />
+      {!debugMode && <FloatingIcons />}
+      <Navbar debugMode={debugMode} setDebugMode={setDebugMode} lenis={lenis} />
+      <Social />
+      
+      <div id="home">
+        <Hero />
+      </div>
+
+      <div id="about">
+        <AnimatedSection>
+          <About />
+        </AnimatedSection>
+      </div>
+
+      <div id="services">
+        <AnimatedSection>
+          <Services />
+        </AnimatedSection>
+      </div>
+
+      <div id="projects">
+        <AnimatedSection>
+          <Project />
+        </AnimatedSection>
+      </div>
+
+      <div id="contact">
+        <AnimatedSection>
+          <Contact />
+        </AnimatedSection>
+      </div>
+
+      <Footer />
     </div>
   );
 }

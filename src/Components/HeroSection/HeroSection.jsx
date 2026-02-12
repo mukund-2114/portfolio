@@ -39,7 +39,8 @@ const HeroSection = () => {
                     </button>
                 </div>
             </div>
-            <div className="lg:relative photo hidden lg:block">
+            
+            <div className="photo lg:relative hidden max-w-[300px] lg:max-w-none lg:block">
                 <div className="relative group">
                     {/* Background geometric elements */}
                     <div className="absolute -top-6 -right-6 w-72 h-72 border-2 border-white/10 rounded-xl transform rotate-12 transition-transform duration-500 group-hover:rotate-6"></div>
@@ -48,18 +49,18 @@ const HeroSection = () => {
                     {/* Main image container */}
                     <div className="relative">
                         {/* Gradient overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent rounded-xl z-10"></div>
+                        <div className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent rounded-xl z-20 pointer-events-none"></div>
 
-                        {/* Image wrapper */}
-                        <div className="relative z-0 bg-white/5 p-3 rounded-xl overflow-hidden backdrop-blur-sm border border-white/10">
-                            <img
-                                src="Mukund_new.png"
-                                className='relative w-[400px] rounded-xl shadow-2xl transition-all duration-500 group-hover:scale-[1.02] filter brightness-90 grayscale-[20%] hover:grayscale-0'
-                                alt="Profile"
-                                style={{
-                                    boxShadow: '0 0 60px rgba(56, 189, 248, 0.15)'
-                                }}
-                            />
+                        {/* Gradient Border Wrapper */}
+                        <div className="p-1 rounded-xl bg-gradient-to-tr from-cyan-400 via-purple-500 to-pink-500 shadow-xl shadow-cyan-500/20">
+                            {/* Image wrapper */}
+                            <div className="relative z-0 bg-black rounded-lg overflow-hidden">
+                                <img
+                                    src="Mukund_new.png"
+                                    className='relative w-full h-auto lg:w-[400px] transition-all duration-500 group-hover:scale-[1.02] filter brightness-90 grayscale-[20%] hover:grayscale-0'
+                                    alt="Profile"
+                                />
+                            </div>
                         </div>
                     </div>
 

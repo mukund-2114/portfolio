@@ -1,33 +1,72 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { Icon } from '@iconify/react';
 
-const Navbar = ({ debugMode, setDebugMode }) => {
-    const [activeLink, setActiveLink] = useState('');
+const Navbar = ({ debugMode, setDebugMode, lenis }) => {
+    const [activeLink, setActiveLink] = useState('home');
     const [open, setOpen] = useState(false);
-    const location = useLocation();
-    const currentLocation = location.pathname.split('/')[1];
+
+    const handleScroll = (id) => {
+        setOpen(false);
+        if (lenis) {
+            lenis.scrollTo(`#${id}`, { offset: -80 });
+        } else {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    };
 
     useEffect(() => {
-        setActiveLink(currentLocation);
-    }, [currentLocation]);
+        const handleScrollSpy = () => {
+            const sections = ['home', 'about', 'services', 'projects', 'contact'];
+            const scrollPosition = window.scrollY + 100;
+
+            for (const section of sections) {
+                const element = document.getElementById(section);
+                if (element && element.offsetTop <= scrollPosition && (element.offsetTop + element.offsetHeight) > scrollPosition) {
+                    setActiveLink(section);
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScrollSpy);
+        return () => window.removeEventListener('scroll', handleScrollSpy);
+    }, []);
+
+    const navLinks = [
+        { id: 'home', label: 'Home' },
+        { id: 'about', label: 'About' },
+        { id: 'services', label: 'Services' },
+        { id: 'projects', label: 'Projects' },
+        { id: 'contact', label: 'Contact' },
+    ];
 
     return (
         <header className='text-gray-200 w-full fixed z-[999] top-0 bg-[#030303]/80 backdrop-blur-md border-b border-white/5'>
-            <nav className='lg:w-4/6 w-screen lg:mx-auto flex justify-between items-center p-3 lg:p-5'>
-                <Link to='/' className="logo group" style={{ width: "200px", height: "50px" }} onClick={() => setActiveLink('')}>
+            <nav className='lg:w-4/6 w-full lg:mx-auto flex justify-between items-center p-3 lg:p-5'>
+                <a href="#home" className="logo group" style={{ width: "200px", height: "50px" }} onClick={(e) => { e.preventDefault(); handleScroll('home'); }}>
                     <img src="logo2.png" alt="Logo" className='w-full h-full transition-all duration-300 group-hover:brightness-125 group-hover:drop-shadow-[0_0_8px_rgba(56,189,248,0.5)]' />
-                </Link>
+                </a>
                 <div className="lg:hidden z-50">
                     <Icon icon={open ? 'fa:times' : 'fa:bars'} className="text-2xl cursor-pointer text-white/70 hover:text-white transition-colors" onClick={() => setOpen(!open)} />
                 </div>
                 <div className={`lg:flex lg:items-center lg:gap-8 absolute lg:static w-full lg:w-auto left-0 lg:left-auto bg-[#030303] lg:bg-transparent transition-all duration-500 ease-in-out ${open ? 'top-[74px] opacity-100' : 'top-[-400px] lg:top-0 opacity-0 lg:opacity-100'} text-center lg:text-left border-b lg:border-none border-white/5`}>
                     <ul className='flex flex-col lg:flex-row lg:items-center lg:gap-8 p-6 lg:p-0'>
-                        <li><Link to='/' className={`${activeLink === '' ? 'text-white active' : 'text-gray-400 font-medium hover:text-white transition-colors'}`} onClick={() => setOpen(false)}>Home</Link></li>
-                        <li><Link to='/about' className={`${activeLink === 'about' ? 'text-white active' : 'text-gray-400 font-medium hover:text-white transition-colors'}`} onClick={() => setOpen(false)}>About</Link></li>
-                        <li><Link to='/services' className={`${activeLink === 'services' ? 'text-white active' : 'text-gray-400 font-medium hover:text-white transition-colors'}`} onClick={() => setOpen(false)}>Services</Link></li>
-                        <li><Link to='/projects' className={`${activeLink === 'projects' ? 'text-white active' : 'text-gray-400 font-medium hover:text-white transition-colors'}`} onClick={() => setOpen(false)}>Projects</Link></li>
-                        <li><Link to='/contact' className={`${activeLink === 'contact' ? 'text-white active' : 'text-gray-400 font-medium hover:text-white transition-colors'}`} onClick={() => setOpen(false)}>Contact</Link></li>
+                        {navLinks.map((link) => (
+                            <li key={link.id}>
+                                <a
+                                    href={`#${link.id}`}
+                                    className={`${activeLink === link.id ? 'text-white active' : 'text-gray-400 font-medium hover:text-white transition-colors'}`}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        handleScroll(link.id);
+                                    }}
+                                >
+                                    {link.label}
+                                </a>
+                            </li>
+                        ))}
 
                         {/* Debug Toggle */}
                         <li>

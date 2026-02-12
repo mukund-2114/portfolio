@@ -55,7 +55,7 @@ const generateRandomPositions = (count) => {
     });
 };
 
-const IconItem = memo(({ item, mouseX, mouseY, config, onPop }) => {
+const IconItem = memo(({ item, mouseX, mouseY, config, onPop, isGlowing }) => {
     const [popped, setPopped] = useState(false);
 
     const handleClick = (e) => {
@@ -76,13 +76,16 @@ const IconItem = memo(({ item, mouseX, mouseY, config, onPop }) => {
                         y: mouseY,
                         left: `${config.initialXPercent}%`,
                         top: `${config.initialYPercent}%`,
-                        zIndex: 40, // Reduced z-index to stay behind primary text but above background
-                        animationDuration: `${config.duration}s`
+                        zIndex: isGlowing ? 45 : 40, 
+                        animationDuration: `${config.duration}s`,
                     }}
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{
-                        opacity: 0.15, // Much more transparent base
-                        scale: 1,
+                        opacity: isGlowing ? 0.8 : 0.15, 
+                        scale: isGlowing ? 1.1 : 1,
+                        filter: isGlowing 
+                            ? 'drop-shadow(0 0 10px rgba(56,189,248,0.6)) brightness(1.2)' 
+                            : 'drop-shadow(0 0 8px rgba(255, 255, 255, 0.2))'
                     }}
                     exit={{
                         opacity: 0,
@@ -91,13 +94,15 @@ const IconItem = memo(({ item, mouseX, mouseY, config, onPop }) => {
                         transition: { duration: 0.3 }
                     }}
                     transition={{
-                        opacity: { duration: 0.8 },
-                        scale: { duration: 0.5 },
+                        opacity: { duration: 1 }, 
+                        scale: { duration: 1 },
+                        filter: { duration: 1 },
                         default: { type: "spring", stiffness: 40, damping: 25 }
                     }}
                     whileHover={{
                         scale: 1.3,
-                        opacity: 0.8, // Pop on hover
+                        opacity: 1, 
+                        zIndex: 50,
                         filter: "brightness(1.5) drop-shadow(0 0 15px rgba(56,189,248,0.8))",
                         transition: { duration: 0.2 }
                     }}
@@ -107,7 +112,7 @@ const IconItem = memo(({ item, mouseX, mouseY, config, onPop }) => {
                     <div className="relative group">
                         <Icon
                             icon={item.icon}
-                            className="w-8 h-8 md:w-12 md:h-12 transition-all duration-300 pointer-events-none opacity-60 group-hover:opacity-100"
+                            className="w-8 h-8 md:w-12 md:h-12 transition-all duration-300 pointer-events-none text-white/90"
                         />
                     </div>
                 </motion.div>
@@ -118,7 +123,7 @@ const IconItem = memo(({ item, mouseX, mouseY, config, onPop }) => {
 
 const ScoreBoard = ({ score, lastCollected, isFinished }) => {
     return (
-        <div className={`fixed bottom-6 right-6 z-[200] flex flex-col items-end gap-2 pointer-events-none select-none transition-opacity duration-500 ${isFinished ? 'opacity-0' : 'opacity-100'}`}>
+        <div className={`fixed bottom-20 md:bottom-6 right-6 z-[200] flex flex-col items-end gap-2 pointer-events-none select-none transition-opacity duration-500 ${isFinished ? 'opacity-0' : 'opacity-100'}`}>
             <AnimatePresence>
                 {lastCollected && (
                     <motion.div
@@ -132,16 +137,16 @@ const ScoreBoard = ({ score, lastCollected, isFinished }) => {
                     </motion.div>
                 )}
             </AnimatePresence>
-            <div className="bg-black/40 border border-white/10 p-4 rounded-xl backdrop-blur-md shadow-[0_0_30px_rgba(0,0,0,0.5)] flex items-center gap-4">
+            <div className="bg-black/40 border border-white/10 p-1 md:p-4 rounded-xl backdrop-blur-md shadow-[0_0_30px_rgba(0,0,0,0.5)] flex items-center gap-2 md:gap-4">
                 <div className="flex flex-col">
-                    <span className="text-[10px] text-muted font-bold uppercase tracking-[0.2em]">Tech Collected</span>
-                    <span className="text-3xl font-mono font-bold text-white leading-none">
+                    <span className="text-[8px] md:text-[10px] text-muted font-bold uppercase tracking-[0.2em]">Tech Collected</span>
+                    <span className="text-xl md:text-3xl font-mono font-bold text-white leading-none">
                         {score.toString().padStart(2, '0')}
-                        <span className="text-sm text-slate-500 ml-1">/ {icons.length}</span>
+                        <span className="text-xs md:text-sm text-slate-500 ml-1">/ {icons.length}</span>
                     </span>
                 </div>
-                <div className="w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center border border-primary/20">
-                    <Icon icon="game-icons:achievement" className="text-primary w-6 h-6 animate-pulse" />
+                <div className="w-8 h-8 md:w-12 md:h-12 bg-primary/5 rounded-full flex items-center justify-center border border-primary/20">
+                    <Icon icon="game-icons:achievement" className="text-primary w-4 h-4 md:w-6 md:h-6 animate-pulse" />
                 </div>
             </div>
         </div>
@@ -199,6 +204,7 @@ const FloatingIcons = () => {
     const [lastCollected, setLastCollected] = useState(null);
     const [showCongrats, setShowCongrats] = useState(false);
     const [gameKey, setGameKey] = useState(0);
+    const [glowingIndex, setGlowingIndex] = useState(-1);
 
     const iconConfigs = useMemo(() => generateRandomPositions(icons.length), [gameKey]);
 
@@ -217,6 +223,36 @@ const FloatingIcons = () => {
         window.addEventListener('mousemove', handleMouseMove);
         return () => window.removeEventListener('mousemove', handleMouseMove);
     }, [x, y]);
+
+    // Random glow logic - Single icon at a time
+    useEffect(() => {
+        let timeoutId;
+        
+        const scheduleNextGlow = () => {
+             // Random delay before picking next icon (1s to 4s)
+             const delay = Math.random() * 3000 + 1000;
+             
+             timeoutId = setTimeout(() => {
+                 // Pick random icon
+                 const randomIndex = Math.floor(Math.random() * icons.length);
+                 setGlowingIndex(randomIndex);
+                 
+                 // How long to stay glowing (1.5s to 2.5s)
+                 const glowDuration = Math.random() * 1000 + 1500;
+                 
+                 setTimeout(() => {
+                     setGlowingIndex(-1);
+                     scheduleNextGlow();
+                 }, glowDuration);
+                 
+             }, delay);
+        };
+        
+        // Start the loop
+        scheduleNextGlow();
+        
+        return () => clearTimeout(timeoutId);
+    }, []);
 
     useEffect(() => {
         if (score === icons.length && score !== 0) {
@@ -260,6 +296,7 @@ const FloatingIcons = () => {
         setScore(0);
         setShowCongrats(false);
         setGameKey(prev => prev + 1);
+        setGlowingIndex(-1);
     };
 
     if (!mounted) return null;
@@ -275,6 +312,7 @@ const FloatingIcons = () => {
                         mouseY={mouseY}
                         config={iconConfigs[index]}
                         onPop={handlePop}
+                        isGlowing={index === glowingIndex}
                     />
                 ))}
             </div>

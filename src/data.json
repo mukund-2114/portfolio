@@ -106,6 +106,12 @@
   ],
   "projects": [
     {
+      "title": "Community of Guardians: SDG Superhero",
+      "description": "A dynamic, interactive web page built for Community of Guardians that assigns users a 'Superhero' persona based on Sustainable Development Goals (SDGs). Features dynamic routing, smooth animations, and responsive design.",
+      "image": "cog_sdg.png",
+      "website": "https://www.communityofguardians.com/superhero/1"
+    },
+    {
       "title": "Orrery Explorer: NASA Space Apps Challenge",
       "description": "A 3D interactive orrery web application visualizing Near-Earth Objects (NEOs) and planetary orbits. Built for the NASA Space Apps Challenge to explore our solar system.",
       "image": "orrery.png",
@@ -133,7 +139,7 @@
       "title": "Apple Landing Page Clone",
       "description": "From cutting-edge devices to seamless software integration, AppleClone captures the spirit of innovation, simplicity, and elegance that defines the Apple ecosystem.",
       "image": "apple.png",
-      "website": "https://apple-z44z.onrender.com/"
+      "website": "https://apple-demo.mukundkapadia.com/"
     },
     {
       "title": "Multishop",
