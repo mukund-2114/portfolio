@@ -19,7 +19,7 @@ const Navbar = ({ debugMode, setDebugMode, lenis }) => {
 
     useEffect(() => {
         const handleScrollSpy = () => {
-            const sections = ['home', 'about', 'services', 'projects', 'contact'];
+            const sections = ['home', 'about', 'services', 'projects', 'blog', 'contact'];
             const scrollPosition = window.scrollY + 100;
 
             for (const section of sections) {
@@ -39,6 +39,7 @@ const Navbar = ({ debugMode, setDebugMode, lenis }) => {
         { id: 'about', label: 'About' },
         { id: 'services', label: 'Services' },
         { id: 'projects', label: 'Projects' },
+        { id: 'blog', label: 'Blog' },
         { id: 'contact', label: 'Contact' },
     ];
 

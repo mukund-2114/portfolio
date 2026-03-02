@@ -12,39 +12,15 @@ import Navbar from './Components/HeroSection/Navbar';
 import Footer from './Components/Footer';
 import Social from './Components/Social';
 import AnimatedSection from './Components/HeroSection/AnimationSection';
+import Blog from './Components/Blog/Blog';
 
-function App() {
-  const [debugMode, setDebugMode] = useState(false);
-  const [lenis, setLenis] = useState(null);
+import BlogPost from './Components/Blog/BlogPost';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-  useEffect(() => {
-    const lenisInstance = new Lenis({
-      duration: 1.5,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      smoothTouch: false, // Touch scrolling is usually better native
-    });
-
-    setLenis(lenisInstance);
-
-    function raf(time) {
-      lenisInstance.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenisInstance.destroy();
-    };
-  }, []);
-
+function MainLayout({ debugMode, setDebugMode, lenis }) {
   return (
     <div className={`relative ${debugMode ? 'debug-wireframes' : ''} pb-0 md:pb-0`}>
-      {/* 
-        "Astonish" Factor: Wireframe Mode
-        If debugMode is true, we apply a global class that outlines everything.
-      */}
+      {/* "Astonish" Factor: Wireframe Mode */}
       {debugMode && (
         <style>{`
           .debug-wireframes * {
@@ -86,6 +62,12 @@ function App() {
         </AnimatedSection>
       </div>
 
+      <div id="blog">
+        <AnimatedSection>
+          <Blog />
+        </AnimatedSection>
+      </div>
+
       <div id="contact">
         <AnimatedSection>
           <Contact />
@@ -94,6 +76,42 @@ function App() {
 
       <Footer />
     </div>
+  );
+}
+
+function App() {
+  const [debugMode, setDebugMode] = useState(false);
+  const [lenis, setLenis] = useState(null);
+
+  useEffect(() => {
+    const lenisInstance = new Lenis({
+      duration: 1.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      smoothTouch: false,
+    });
+
+    setLenis(lenisInstance);
+
+    function raf(time) {
+      lenisInstance.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenisInstance.destroy();
+    };
+  }, []);
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainLayout debugMode={debugMode} setDebugMode={setDebugMode} lenis={lenis} />} />
+        <Route path="/blog/:id" element={<BlogPost />} />
+      </Routes>
+    </Router>
   );
 }
 

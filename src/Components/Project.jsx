@@ -11,7 +11,7 @@ const Project = () => {
     <section className='min-h-screen py-20 px-4' id='project'>
       <div className='max-w-7xl mx-auto'>
         <div className='text-center mb-16'>
-          <h1 className='text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary inline-block'>
+          <h1 className='text-4xl md:text-5xl p-1 font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary inline-block'>
             Featured Projects
           </h1>
           <p className='text-muted text-lg max-w-2xl mx-auto'>
