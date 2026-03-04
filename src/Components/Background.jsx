@@ -14,7 +14,7 @@ const Background = ({ debugMode }) => {
         // Configuration
         const isMobile = width < 768;
         const gridSize = isMobile ? 30 : 40; // Tighter grid for mobile
-        const speed = isMobile ? 1.0 : 2; // Slower packets on mobile
+        const speed = isMobile ? 1.0 : 1.0; // Slower packets on mobile
         const packetChance = isMobile ? 0.08 : 0.15; // Fewer packets on mobile
 
         let packets = [];

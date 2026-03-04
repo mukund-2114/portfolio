@@ -63,7 +63,67 @@ export const blogs = [
 
       { type: 'heading', text: 'Conclusion' },
       { type: 'paragraph', text: 'The Thundering Herd is an incredibly common anti-pattern in high-scale systems. The core lesson is to always be careful about synchronized time-based events and always assume your cache will eventually fail under pressure.' },
-      { type: 'callout', text: 'Implement **request coalescing** and **jitter**, and you will save countless databases from total meltdown!' }
+      { type: 'callout', text: 'Implement **request coalescing** and **jitter**, and you will save countless databases from total meltdown!' },
+      { type: 'internalLink', direction: 'right', label: 'Part 2', title: 'Strategic Caching in Distributed Systems: Beyond Basic TTL', link: '/blog/2' }
+    ]
+  },
+  {
+    id: 2,
+    title: "Strategic Caching in Distributed Systems: Beyond Basic TTL",
+    summary: "Why standard cache expiration isn't enough, and how advanced patterns like Jitter, Stale-While-Revalidate, and Early Recomputation prevent system crashes.",
+    date: "March 15, 2026",
+    readTime: "9 min read",
+    thumbnail: "/blog2/thumbnail.jpg",
+    tags: ["Performance", "Backend", "Architecture"],
+    content: [
+      { type: 'internalLink', direction: 'left', label: 'Part 1', title: 'Understanding the Thundering Herd Problem', link: '/blog/1' },
+      { type: 'paragraph', text: 'Caching is normally the first tool developers reach for when a database starts running hot. The concept seems beautifully simple: intercept the request, check if the data is in memory, and if it is, return it immediately.' },
+      { type: 'paragraph', text: 'But in high-scale distributed systems, simple caching introduces a terrifying hidden trap: ==simultaneous expiration==.' },
+      
+      { type: 'callout', text: '**The Problem:** If a heavily-requested piece of data (like a Black Friday discount code) is cached with a fixed Time-to-Live (TTL) of exactly 60 seconds, what happens at second 61 when that cache suddenly expires and disappears?' },
+
+      { type: 'image', src: '/blog2/crowd.jpg', caption: 'High-traffic events like E-commerce sales can instantly overload databases if caches expire synchronously.' },
+
+      { type: 'paragraph', text: 'At second 61, the cache expires. Instantly, all incoming traffic gets a "cache miss" and hits your primary database directly. This instantaneous flood is a form of the Thundering Herd problem, and basic caching simply isn\'t enough to stop it.' },
+      { type: 'paragraph', text: 'Let’s explore the modern, production-ready cache strategies used by companies like Netflix and Amazon to combat these spikes and keep systems online.' },
+
+      { type: 'heading', text: '1. TTL Jitter (Randomized Expiration)' },
+      { type: 'paragraph', text: 'Imagine an IPL cricket match streaming to millions of devices. When the match starts, 5 million phones request the configuration file at the exact same moment. If you set `TTL = 300 seconds`, exactly five minutes later, 5 million phones will miss the cache simultaneously.' },
+      { type: 'image', src: '/blog2/crowd_phone.jpg', caption: 'Millions of concurrent users requesting live data from a stadium or streaming event.' },
+      { type: 'paragraph', text: 'The solution is ==Jitter==. Instead of a hardcoded 300 seconds, you add a small random offset to every key when saving it to the cache:' },
+      { type: 'paragraph', text: '`TTL = Base_TTL + Random(0, Jitter_Window)`' },
+      { type: 'paragraph', text: 'By setting the TTL to a random number between 280 and 320 seconds, the expirations are smeared smoothly across a 40-second window, preventing a sudden, synchronized database strike.' },
+      { type: 'image', src: '/blog2/ttl-jitter.png', caption: 'Architecture Diagram: Synchronized TTL Expiry vs Jittered Timeline.' },
+
+      { type: 'heading', text: '2. Cache Mutex (Locking)' },
+      { type: 'paragraph', text: 'What happens when a critical cache key *does* expire, and 10,000 requests arrive in the exact same millisecond? No matter how much Jitter you use, a heavily accessed key will still cause a massive spike when it naturally dies.' },
+      { type: 'paragraph', text: 'A **Cache Mutex** (mutual exclusion) solves this using a simple rule: ==Only ONE request is allowed to ask the database.==' },
+      { type: 'paragraph', text: 'When a cache miss occurs, the backend attempts to acquire a distributed lock. The first request grabs the lock, queries the database, updates the cache, and releases the lock. The other 9,999 requests fail to get the lock, wait for 50ms, and retry the cache-finding it freshly populated!' },
+      { type: 'image', src: '/blog2/cache-mutex.png', caption: 'Architecture Diagram: Mutex Locking allowing only one request to hit the DB.' },
+
+      { type: 'heading', text: '3. Stale-While-Revalidate (SWR)' },
+      { type: 'paragraph', text: 'This is the golden standard used heavily by modern CDNs. The philosophy behind SWR is: *"Serving slightly old data immediately is better than making the user wait for new data."*' },
+      { type: 'paragraph', text: 'It works best for high-traffic, globally cached endpoints (e.g. `GET /sale/live-status` or a live blog) where minor staleness is acceptable.' },
+      { type: 'paragraph', text: 'With SWR, you configure two timers:' },
+      { type: 'paragraph', text: '• **Max-Age (e.g., 60s):** The data is considered completely fresh.' },
+      { type: 'paragraph', text: '• **Stale-Window (e.g., 120s):** The data is old, but we are allowed to show it to the user anyway.' },
+      { type: 'callout', text: '**How it works:** When a user requests data during the stale window, the cache immediately returns the old data so the user sees no loading screen. But behind the scenes, the cache fires off an asynchronous request to the database to fetch the fresh data. When the *next* user requests that exact same endpoint, they instantly get the freshly fetched data!' },
+      { type: 'image', src: '/blog2/stale-while-revalidate.png', caption: 'Architecture Diagram: Stale-While-Revalidate (SWR) Flow.' },
+
+      { type: 'heading', text: '4. Cache Pre-Warming' },
+      { type: 'paragraph', text: 'If a highly anticipated Netflix show is premiering at midnight, or a massive E-commerce flash sale is starting, you cannot wait for the first user to cause a cache miss.' },
+      { type: 'paragraph', text: '==Cache Warming== is the process of intentionally running scripts to query the database and populate the cache *before* the traffic arrives. By 11:59 PM, the cache is already fully loaded and the database is completely protected from the initial blast.' },
+      { type: 'image', src: '/blog2/cache-warming.png', caption: 'Architecture Diagram: Cache Warming scripts running before a launch event.' },
+
+      { type: 'heading', text: '5. Probability-Based Early Expiration' },
+      { type: 'paragraph', text: 'Also known as Probabilistic Early Re-computation (PER), this is a brilliant mathematical technique used in systems like Redis.' },
+      { type: 'paragraph', text: 'Instead of waiting for a key to fully expire, the system uses an algorithm to randomly "pretend" the key has expired slightly early. As a key gets closer and closer to its true death, the probability of it triggering a re-computation increases.' },
+      { type: 'paragraph', text: 'Because this relies on random chance, exactly one random incoming request will trigger the early db-check while the cache is still technically alive. It elegantly prevents spikes without needing complex locking mechanisms.' },
+      { type: 'image', src: '/blog2/probabilistic-early-expiration.png', caption: 'Probability algorithm timeline simulating early expiration.' },
+
+      { type: 'heading', text: 'Tradeoffs and Strategy Selection' },
+      { type: 'paragraph', text: 'Choosing the right cache strategy is entirely dependent on the specific constraints of your product:' },
+      { type: 'callout', text: '• Use **Jitter** for massive bulk-loaded datasets to prevent synchronized expiration.\n• Use **Mutexes** when computing the data is extremely expensive and you cannot afford a single duplicate DB query.\n• Use **Stale-While-Revalidate** when low latency is strictly more important than data freshness (e.g. eCommerce catalogs, live scores).\n• Use **Pre-Warming** for scheduled, highly-marketed traffic events.' }
     ]
   }
 ];

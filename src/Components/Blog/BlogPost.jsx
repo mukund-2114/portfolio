@@ -120,6 +120,26 @@ const BlogPost = () => {
                                     </figure>
                                 );
                             }
+                            if (block.type === 'internalLink') {
+                                return (
+                                    <div 
+                                        key={idx} 
+                                        onClick={() => navigate(block.link)}
+                                        className={`my-12 p-6 bg-white/5 border border-white/10 rounded-2xl flex items-center group cursor-pointer hover:bg-white/10 transition-colors ${block.direction === 'left' ? 'justify-start' : 'justify-between'}`}
+                                    >
+                                        {block.direction === 'left' && (
+                                            <Icon icon="lucide:arrow-left" className="text-gray-400 group-hover:text-white group-hover:-translate-x-2 transition-all text-2xl mr-6 flex-shrink-0" />
+                                        )}
+                                        <div className={block.direction === 'left' ? 'text-left' : 'text-left'}>
+                                            <span className="text-emerald-400 text-sm font-bold tracking-wider uppercase mb-2 block">{block.label}</span>
+                                            <span className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">{block.title}</span>
+                                        </div>
+                                        {block.direction !== 'left' && (
+                                            <Icon icon="lucide:arrow-right" className="text-gray-400 group-hover:text-white group-hover:translate-x-2 transition-all text-2xl ml-6 flex-shrink-0" />
+                                        )}
+                                    </div>
+                                );
+                            }
                             return null;
                         })}
                     </article>
