@@ -125,5 +125,44 @@ export const blogs = [
       { type: 'paragraph', text: 'Choosing the right cache strategy is entirely dependent on the specific constraints of your product:' },
       { type: 'callout', text: '• Use **Jitter** for massive bulk-loaded datasets to prevent synchronized expiration.\n• Use **Mutexes** when computing the data is extremely expensive and you cannot afford a single duplicate DB query.\n• Use **Stale-While-Revalidate** when low latency is strictly more important than data freshness (e.g. eCommerce catalogs, live scores).\n• Use **Pre-Warming** for scheduled, highly-marketed traffic events.' }
     ]
+  },
+  {
+    id: 3,
+    title: "Demystifying OpenID Connect: Identity on the Modern Web",
+    summary: "Discover how OpenID Connect powers modern single sign-on (SSO), bridging the gap between OAuth 2.0 authorization and true digital identity.",
+    date: "April 10, 2026",
+    readTime: "7 min read",
+    thumbnail: "/blog3/thumbnail.png",
+    tags: ["Authentication", "Security", "Architecture"],
+    content: [
+      { type: 'paragraph', text: 'Authentication on the web used to be a massive problem. Every single application needed its own password database, whether it was YouTube, Google Maps, or a random startup. This led to password fatigue for users and giant security risks.' },
+      
+      { type: 'heading', text: 'How OIDC Came Into Existence' },
+      { type: 'paragraph', text: 'In the early days, if an application wanted to sync your Google Contacts, it literally asked you to type in your Google password. To fix this security nightmare, the industry created **OAuth 2.0**. This allowed apps to request access to your data without ever seeing your password. It was a massive win for *authorization*.' },
+      { type: 'paragraph', text: 'However, developers soon realized they could hack OAuth 2.0 to act as a login system. They would use the protocol to fetch a user\'s profile data and use that as proof of identity. This forced an authorization protocol to do an *authentication* job, which resulted in a fragmented and insecure mess across the web.' },
+      { type: 'paragraph', text: 'To fix this, the industry introduced **OpenID Connect (OIDC)**. OIDC is a standardized identity layer built directly on top of OAuth 2.0. It finally gave developers a native, standard way to securely verify exactly who a user is.' },
+      
+      { type: 'heading', text: 'A System Design Perspective: Centralizing Identity' },
+      { type: 'paragraph', text: 'At its core, OIDC is an architectural pattern for centralizing authentication. When designing scalable systems, you don\'t want every microservice managing user passwords. Instead, you build a distinct Identity Provider.' },
+      { type: 'callout', text: '1. **OpenID Provider (OP):** The central authentication server that verifies the user (e.g., `auth-google`).\n2. **Relying Party (RP):** The client application or microservice that relies on the OP to identify the user.' },
+      { type: 'paragraph', text: 'The OP handles the login screen and consent. Once authenticated, it returns a cryptographically signed **ID Token (formatted as a JWT)** back to the RP. The RP then uses this token to establish a session.' },
+
+      { type: 'heading', text: 'Why JWTs Make OIDC Highly Scalable' },
+      { type: 'paragraph', text: 'From a system design standpoint, the genius of OIDC lies in the ID Token being a stateless JSON Web Token (JWT). If YouTube (the Relying Party) had to make a network request to `auth-google` (the OP) to verify a user on every single video click, `auth-google` would crash from the immense load.' },
+      { type: 'paragraph', text: 'Instead, `auth-google` cryptographically signs the JWT. YouTube can fetch Google\'s public keys (via a standard JWKS endpoint) and verify the token\'s signature locally. This allows the Relying Party to validate user identity asynchronously, preventing the central Identity Provider from becoming a system bottleneck.' },
+
+      { type: 'heading', text: 'Ecosystem Architecture in Practice' },
+      { type: 'paragraph', text: 'To understand the true power of this decoupled auth architecture, look at how the tech giants structure their ecosystems:' },
+      
+      { type: 'animation', name: 'oidc' },
+      
+      { type: 'subheading', text: '1. Internal Ecosystems (1st-Party RPs)' },
+      { type: 'paragraph', text: 'Google does not build separate login databases for YouTube, Photos, or Maps. It built one highly secure OIDC microservice (`auth-google`). All internal apps simply act as 1st-party Relying Parties that consume ID Tokens from this central service.' },
+
+      { type: 'subheading', text: '2. External Delegated Auth (3rd-Party RPs)' },
+      { type: 'paragraph', text: 'Because OIDC is an open standard, it can be extended securely over the public internet. Any independent startup can integrate a "Sign in with Google" button, acting as a 3rd-party Relying Party. During this exchange, `auth-google` injects an OAuth 2.0 Consent Form to ensure the user approves sharing their profile data.' },
+
+      { type: 'callout', text: '**The System Design Takeaway:** By decoupling identity management into a dedicated OpenID Provider, companies achieve single sign-on (SSO), localize security risks to one service, and scale validation infinitely via stateless JWTs. It is the modern standard for distributed systems.' }
+    ]
   }
 ];

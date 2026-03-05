@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
 import { blogs } from './blogData';
+import OIDCAnimation from './Animations/OIDCAnimation';
 
 const BlogPost = () => {
     const { id } = useParams();
@@ -139,6 +140,9 @@ const BlogPost = () => {
                                         )}
                                     </div>
                                 );
+                            }
+                            if (block.type === 'animation' && block.name === 'oidc') {
+                                return <OIDCAnimation key={idx} />;
                             }
                             return null;
                         })}
