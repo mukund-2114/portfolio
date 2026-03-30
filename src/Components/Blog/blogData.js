@@ -164,5 +164,44 @@ export const blogs = [
 
       { type: 'callout', text: '**The System Design Takeaway:** By decoupling identity management into a dedicated OpenID Provider, companies achieve single sign-on (SSO), localize security risks to one service, and scale validation infinitely via stateless JWTs. It is the modern standard for distributed systems.' }
     ]
+  },
+  {
+    id: 4,
+    title: "The Central Nervous System of Modern Apps: Apache Kafka Explained Simply",
+    summary: "Discover how Kafka acts as a high-speed message pipeline, enabling systems to handle millions of events in real-time through its unique distributed architecture.",
+    date: "March 19, 2026",
+    readTime: "7 min read",
+    thumbnail: "/blog4/thumbnail.png",
+    tags: ["Kafka", "System Design", "Backend"],
+    content: [
+      { type: 'paragraph', text: 'Imagine a busy pizzeria. At first, there is only one waiter and one chef. The waiter shouts the order directly to the chef, and the pizza gets made. Simple, right?' },
+      { type: 'paragraph', text: 'But as the pizzeria grows, you now have 10 waiters and 10 chefs. The waiters are all shouting at different chefs at the same time. Chefs are getting overwhelmed, orders are being forgotten, and if a chef goes on a break, the waiter has to stand there and wait until they get back. This is a mess; it is exactly the "spaghetti" problem that happens in big apps.' },
+      
+      { type: 'heading', text: 'The Solution: The Order Board' },
+      { type: 'paragraph', text: 'To fix the chaos, the pizzeria installs a giant **Order Board** in the middle of the kitchen. Instead of shouting at a chef, every waiter just pins a ticket to the board and walks away. When a chef is ready, they simply look at the board, pick the next ticket, and start cooking.' },
+      { type: 'paragraph', text: 'This "Order Board" is exactly what ==Apache Kafka== is for the digital world. It is the central place where all information goes so that no one has to shout at anyone else.' },
+      
+      { type: 'heading', text: 'Connecting the Dots to Kafka' },
+      { type: 'paragraph', text: 'In technical terms, we just rename the roles from our pizzeria to understand how modern apps like YouTube or Uber really work:' },
+      { type: 'callout', text: '1. **Producers (The Waiters):** They are the ones creating the information. For example, when you click "Buy" on an app, the app acts as a waiter and pins that order to the board.\n2. **Topics (The Categories):** This is how Kafka groups data on the board. You might have one section for **"Orders"** and another for **"User Logins"**.\n3. **Consumers (The Chefs):** They are the ones reading the tickets. An **Analytics Service** might read orders to count sales, while a **Notification Service** reads them to send you a confirmation email.' },
+
+      { type: 'animation', name: 'kafka' },
+      
+      { type: 'heading', text: 'Why is Kafka so Fast and Scalable?' },
+      { type: 'paragraph', text: 'A single Topic can become very crowded. To handle this, Kafka splits Topics into multiple ==Partitions==.' },
+      { type: 'paragraph', text: 'Imagine a highway. If everyone drives in one lane, there is a traffic jam. Kafka creates multiple lanes (Partitions) so that different servers can read and write data in parallel. This is why Kafka can handle millions of messages per second without breaking a sweat.' },
+      
+      { type: 'heading', text: 'Consumer Groups: Teamwork at Scale' },
+      { type: 'paragraph', text: 'If you have a million orders coming in, one consumer service might be too slow. Kafka allows you to create a **Consumer Group**: a team of servers that work together to process the same topic.' },
+      { type: 'paragraph', text: 'Each member of the team takes a different Partition (lane), so they never do the same work twice. If one member of the team dies, Kafka automatically gives their work to someone else.' },
+      { type: 'paragraph', text: 'The best part? Multiple **different** consumer groups can read the exact same data at their own pace for completely different goals. While one group uses the data for **Analytics** (counting sales), a second group can simultaneously read the same data to send **Notifications** to users. They never interfere with each other!' },
+      
+      { type: 'heading', text: 'Safety and Ordering' },
+      { type: 'paragraph', text: 'Kafka is more than just a pipeline; it is also a highly reliable storage system. It keeps a "log" of every message that ever came through. If a service goes offline for two hours, when it comes back, it can simply "rewind" and read all the messages it missed in the correct order.' },
+      
+      { type: 'image', src: '/blog4/diagram-architecture.png', caption: 'High-Level Architecture Overview: How data flows from various Producers through Kafka to decoupled Consumer Groups.' },
+
+      { type: 'callout', text: '**The Takeaway:** Kafka isn\'t just a piece of software; it\'s the backbone that allows modern apps to be fast, decoupled, and reliable. By treating data as a continuous stream rather than a series of one-off requests, you build systems that truly can scale to infinity.' }
+    ]
   }
 ];

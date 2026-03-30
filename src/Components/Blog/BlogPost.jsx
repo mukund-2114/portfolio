@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
 import { blogs } from './blogData';
 import OIDCAnimation from './Animations/OIDCAnimation';
+import KafkaAnimation from './Animations/KafkaAnimation';
 
 const BlogPost = () => {
     const { id } = useParams();
@@ -143,6 +144,9 @@ const BlogPost = () => {
                             }
                             if (block.type === 'animation' && block.name === 'oidc') {
                                 return <OIDCAnimation key={idx} />;
+                            }
+                            if (block.type === 'animation' && block.name === 'kafka') {
+                                return <KafkaAnimation key={idx} />;
                             }
                             return null;
                         })}
